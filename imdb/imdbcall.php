@@ -3,7 +3,7 @@
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting( E_ALL | E_STRICT );
-ini_set('max_execution_time', 300);
+set_time_limit(0);
 
 // conectar a la base de datos
 $mysqli = new mysqli("localhost", "root", "root", "peliculas");
