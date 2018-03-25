@@ -1,0 +1,30 @@
+01 Login
+
+02 Registro
+- Registrar datos del usuario
+- Actualizar suscripción
+
+03 Main
+- Listar filtros
+- Recomendar película
+- Registrar yala
+
+04 Detalle
+- Obtener detalle de la recomendación
+- Listar críticas de la recomendación
+- Listar disponibilidad de servicios de la recomendación
+
+05 Comentarios
+- Comentar película o serie
+- Calificar película o serie
+
+06 Reporte
+- Obtener calificaciones del usuario
+- Listar calificaciones del usuario
+- Registrar edición de calificación
+- Obtener comentarios del usuario
+- Listar comentarios del usuario
+- Registrar modificación de comentario del usuario
+- Obtener listado de películas ya vistas del usuario
+- Listar películas ya vistas del usuario
+- Registrar edición de películas ya vistas del usuario
