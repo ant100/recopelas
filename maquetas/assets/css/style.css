@@ -817,7 +817,7 @@ a.b-home:hover{
 .contact-form{
 	margin-top:3em;
 }
-.main-contact form input[type="text"],.main-contact form textarea,.main-contact form input[type="mail"],.main-contact form input[type="password"]{
+.main-contact form input[type="text"],.main-contact form textarea,.main-contact form input[type="email"],.main-contact form input[type="password"]{
 	width: 100%;
 	padding: 10px 14px;
 	border: 3px solid #000;
@@ -1848,7 +1848,7 @@ font-weight: 700;
 	.contact-form {
 		margin-top: 2em;
 	}
-	.main-contact form input[type="text"], .main-contact form textarea, .main-contact form input[type="mail"], .main-contact form input[type="password"] {
+	.main-contact form input[type="text"], .main-contact form textarea, .main-contact form input[type="email"], .main-contact form input[type="password"] {
 		padding: 8px 12px;
 		border: 2px solid #000;
 		font-size: 1.1em;
@@ -2176,7 +2176,7 @@ font-weight: 700;
 	.main-contact p {
 		font-size: 0.9em;
 	}
-	.main-contact form input[type="text"], .main-contact form textarea, .main-contact form input[type="mail"], .main-contact form input[type="password"] {
+	.main-contact form input[type="text"], .main-contact form textarea, .main-contact form input[type="email"], .main-contact form input[type="password"] {
 		padding: 7px 11px;
 		border: 1px solid #000;
 		font-size: 1em;
@@ -2209,4 +2209,14 @@ font-weight: 700;
 		height:156px;
 		overflow:hidden;
 	}
+}
+
+/* custom */
+.main-contact2 form input[type="text"],.main-contact form textarea,.main-contact form input[type="email"],.main-contact form input[type="password"]{
+	width: 50%;
+}
+
+.main-contact2 form input[type="submit"] {
+	display: block;
+	margin: auto;
 }
