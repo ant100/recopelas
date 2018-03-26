@@ -22,6 +22,7 @@
 			setMaxWidthAndHeight: false,
     		enableResponsiveBreakpoints: false,
     		responsiveBreakpoints: { 
+
 	    		portrait: { 
 	    			changePoint:480,
 	    			visibleItems: 1
@@ -114,6 +115,7 @@
 			setEventHandlers: function() {
 				
 				var listParent = object.parent();
+				console.log(listParent);
 				var childSet = object.children();
 				var leftArrow = listParent.find($(".nbs-flexisel-nav-left"));
 				var rightArrow = listParent.find($(".nbs-flexisel-nav-right"));
@@ -124,6 +126,8 @@
 					
 					var innerWidth = $(listParent).width();
 					var innerHeight = $(listParent).height(); 
+
+					console.log(innerHeight);
 					
 					itemsWidth = (innerWidth)/itemsVisible;
 					
