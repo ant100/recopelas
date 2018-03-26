@@ -1420,6 +1420,10 @@ font-weight: 700;
 @media screen and (max-width: 1024px) {
 	.main {
 		border-left: 80px solid #383838;
+	}
+
+	.main2{
+		border-left: 0;
 	}	
 	.full {
 		border-left: 3px solid #2b2b2b;
@@ -1606,6 +1610,9 @@ font-weight: 700;
 	.main {
 		border-left: 70px solid #383838;
 	}
+	.main2 {
+		border-left: 0;
+	}
 	.menu ul li a {
 		padding: 5px 5px;
 	}
@@ -1786,6 +1793,9 @@ font-weight: 700;
 	}
 	.main {
 		border-left: 61px solid #383838;
+	}
+	.main2 {
+		border-left: 0;
 	}
 	.menu {
 		left: 2px;
@@ -2082,6 +2092,9 @@ font-weight: 700;
 	.main {
 		border-left: 46px solid #383838;
 	}
+	.main2 {
+		border-left: 0;
+	}
 	.header {
 		min-height: 220px;
 	}
@@ -2219,4 +2232,8 @@ font-weight: 700;
 .main-contact2 form input[type="submit"] {
 	display: block;
 	margin: auto;
+}
+
+.main2{
+	 border-left: 0;
 }
