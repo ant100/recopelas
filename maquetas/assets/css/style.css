@@ -670,7 +670,7 @@ h3.head {
 	width:73%;
 }
 .review {
-	margin-top: 4em;
+	margin-top: 1em;
 }
 a.span {
 	color: #000;
@@ -851,6 +851,29 @@ a.b-home:hover{
 	background:#fff;
 	color:#000;
 }
+
+.regresar {
+	font-size: 1.35em;
+	font-weight:400;
+	color: #fff;
+	outline: none;
+	border: 3px solid #df2411;
+	padding: 0.5em 3em;
+	background:#df2411;
+	margin-top: 0em;
+	transition:0.5s all;
+	-webkit-transition:0.5s all;
+	-moz-transition:0.5s all;
+	-o-transition:0.5s all;
+	-ms-transition:0.5s all;
+}
+
+.regresar:hover{
+	text-decoration: none;
+	background:#fff;
+	color:#000;
+}
+
 .contact_info {
 	margin-top:2em;
 }
@@ -1532,6 +1555,12 @@ font-weight: 700;
 		font-size: 1.3em;
 		padding: 0.4em 2.5em;
 	}
+	.regresar {
+		font-size: 1.3em;
+		padding: 0.4em 2.5em;
+		display: inline-block;
+		margin-bottom: 5px;
+	}
 	.map iframe {
 		min-height: 280px;
 	}
@@ -2210,6 +2239,13 @@ font-weight: 700;
 		font-size: 1.1em;
 		padding: 0.3em 2em;
 	}
+
+	.regresar{
+		font-size: 1.1em;
+		padding: 0.3em 2em;
+		display: inline-block;
+		margin-bottom: 5px;
+	}
 	.contact_info {
 		margin-top: 1.4em;
 	}
@@ -2226,7 +2262,7 @@ font-weight: 700;
 }
 
 /* custom */
-.main-contact2 {
+.main-contact2, .main-contact3 {
 	padding: 0;
 }
 
@@ -2235,6 +2271,11 @@ font-weight: 700;
 }
 .main-contact2 form input[type="text"],.main-contact2 form input[type="email"],.main-contact2 form input[type="password"]{
 	width: 50%;
+}
+
+.main-contact2 form input[type="submit"] {
+	display: block;
+	margin: auto;
 }
 
 .main2{
@@ -2260,26 +2301,4 @@ font-weight: 700;
 .usuario {
 	font-weight: bold;
 	display: block;
-}
-
-.regresar {
-	font-size: 1.35em;
-	font-weight:400;
-	color: #fff;
-	outline: none;
-	border: 3px solid #df2411;
-	padding: 0.5em 3em;
-	background:#df2411;
-	margin-top: 0em;
-	transition:0.5s all;
-	-webkit-transition:0.5s all;
-	-moz-transition:0.5s all;
-	-o-transition:0.5s all;
-	-ms-transition:0.5s all;
-}
-
-.regresar:hover{
-	text-decoration: none;
-	background:#fff;
-	color:#000;
 }
