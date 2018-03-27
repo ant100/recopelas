@@ -15,7 +15,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <link rel="stylesheet" href="assets/css/fontawesome-stars.css">
 <link href="assets/css/style.css" rel="stylesheet" type="text/css" media="all" />
 <!-- Custom Theme files -->
-
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+<script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.2.1/js/dataTables.responsive.min.js"></script>
 <!-- Custom Theme files -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -229,9 +231,244 @@ a{
 						<div class="clearfix"> </div>
 						<!--End-pagenation---->
                     </div>
-                    <div class="tab-pane" id="b">Secondo sed ac orci quis tortor imperdiet venenatis. Duis elementum auctor accumsan. Aliquam in felis sit amet augue.</div>
-                    <div class="tab-pane" id="c">Thirdamuno, ipsum dolor sit amet, consectetur adipiscing elit. Duis elementum auctor accumsan. Duis pharetra
-                    varius quam sit amet vulputate. Quisque mauris augue, molestie tincidunt condimentum vitae. </div>
+                    <div class="tab-pane" id="b">
+                    	    <table id="myTable" class="display nowrap" style="width:100%">
+                    	    	<thead>
+                    	    		<tr>
+                    	    			<th>Nombre</th>
+                    	    			<th>Calificación</th>
+                    	    			<th>Acciones</th>
+                    	    		</tr>
+                    	    	</thead>
+                    	    	<tbody>
+                    	    		<tr>
+                    	    			<td>Titulo 01</td>
+                    	    			<td>4.0</td>
+                    	    			<td>
+											<a class="btn btn-primary" href="#">Editar</a>
+										</td>
+                    	    		</tr>
+                    	    		<tr>
+                    	    			<td>Titulo 02</td>
+                    	    			<td>5.0</td>
+                    	    			<td>
+                    	    				<a class="btn btn-primary" href="#">Editar</a>
+										</td>
+                    	    		</tr>
+                    	    		<tr>
+                    	    			<td>Titulo 03</td>
+                    	    			<td>4.0</td>
+                    	    			<td>
+                    	    				<a class="btn btn-primary" href="#">Editar</a>
+										</td>
+                    	    		</tr>
+                    	    		<tr>
+                    	    			<td>Titulo 04</td>
+                    	    			<td>3.0</td>
+                    	    			<td>
+                    	    				<a class="btn btn-primary" href="#">Editar</a>
+										</td>
+                    	    		</tr>
+                    	    		<tr>
+                    	    			<td>Titulo 05</td>
+                    	    			<td>5.0</td>
+                    	    			<td>
+                    	    				<a class="btn btn-primary" href="#">Editar</a>
+										</td>
+                    	    		</tr>
+                    	    		<tr>
+                    	    			<td>Titulo 06</td>
+                    	    			<td>4.0</td>
+                    	    			<td>
+                    	    				<a class="btn btn-primary" href="#">Editar</a>
+										</td>
+                    	    		</tr>
+                    	    		<tr>
+                    	    			<td>Titulo 07</td>
+                    	    			<td>2.0</td>
+                    	    			<td>
+                    	    				<a class="btn btn-primary" href="#">Editar</a>
+										</td>
+                    	    		</tr>
+                    	    		<tr>
+                    	    			<td>Titulo 08</td>
+                    	    			<td>3.0</td>
+                    	    			<td>
+                    	    				<a class="btn btn-primary" href="#">Editar</a>
+										</td>
+                    	    		</tr>
+                    	    		<tr>
+                    	    			<td>Titulo 09</td>
+                    	    			<td>4.0</td>
+                    	    			<td>
+                    	    				<a class="btn btn-primary" href="#">Editar</a>
+										</td>
+                    	    		</tr>
+                    	    		<tr>
+                    	    			<td>Titulo 10</td>
+                    	    			<td>5.0</td>
+                    	    			<td>
+                    	    				<a class="btn btn-primary" href="#">Editar</a>
+										</td>
+                    	    		</tr>
+                    	    		<tr>
+                    	    			<td>Titulo 11</td>
+                    	    			<td>3.0</td>
+                    	    			<td>
+                    	    				<a class="btn btn-primary" href="#">Editar</a>
+										</td>
+                    	    		</tr>
+                    	    		<tr>
+                    	    			<td>Titulo 12</td>
+                    	    			<td>2.0</td>
+                    	    			<td>
+                    	    				<a class="btn btn-primary" href="#">Editar</a>
+										</td>
+                    	    		</tr>
+                    	    		<tr>
+                    	    			<td>Titulo 13</td>
+                    	    			<td>4.0</td>
+                    	    			<td>
+                    	    				<a class="btn btn-primary" href="#">Editar</a>
+										</td>
+                    	    		</tr>
+                    	    		<tr>
+                    	    			<td>Titulo 14</td>
+                    	    			<td>5.0</td>
+                    	    			<td>
+                    	    				<a class="btn btn-primary" href="#">Editar</a>
+										</td>
+                    	    		</tr>
+                    	    	</tbody>
+                    	    	<tfoot>
+                    	    		<tr>
+                    	    			<th>Nombre</th>
+                    	    			<th>Calificación</th>
+                    	    		</tr>
+                    	    	</tfoot>
+                    	    </table>
+                    	
+                    </div>
+                    <div class="tab-pane" id="c">
+                    	<div class="table-responsive">
+	                    	<table id="myTable2" class="display nowrap">
+	                    	    	<thead>
+	                    	    		<tr>
+	                    	    			<th>Nombre</th>
+	                    	    			<th>Crítica</th>
+	                    	    			<th>Acciones</th>
+	                    	    		</tr>
+	                    	    	</thead>
+	                    	    	<tbody>
+	                    	    		<tr>
+	                    	    			<td>Titulo 01</td>
+	                    	    			<td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam posuere...</td>
+	                    	    			<td>
+	                    	    				<a class="btn btn-primary" href="#">Editar</a>
+											</td>
+	                    	    		</tr>
+	                    	    		<tr>
+	                    	    			<td>Titulo 02</td>
+	                    	    			<td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam posuere...</td>
+	                    	    			<td>
+	                    	    				<a class="btn btn-primary" href="#">Editar</a>
+											</td>
+	                    	    		</tr>
+	                    	    		<tr>
+	                    	    			<td>Titulo 03</td>
+	                    	    			<td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam posuere...</td>
+	                    	    			<td>
+	                    	    				<a class="btn btn-primary" href="#">Editar</a>
+											</td>
+	                    	    		</tr>
+	                    	    		<tr>
+	                    	    			<td>Titulo 04</td>
+	                    	    			<td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam posuere...</td>
+	                    	    			<td>
+	                    	    				<a class="btn btn-primary" href="#">Editar</a>
+											</td>
+	                    	    		</tr>
+	                    	    		<tr>
+	                    	    			<td>Titulo 05</td>
+	                    	    			<td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam posuere...</td>
+	                    	    			<td>
+	                    	    				<a class="btn btn-primary" href="#">Editar</a>
+											</td>
+	                    	    		</tr>
+	                    	    		<tr>
+	                    	    			<td>Titulo 06</td>
+	                    	    			<td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam posuere...</td>
+	                    	    			<td>
+	                    	    				<a class="btn btn-primary" href="#">Editar</a>
+											</td>
+	                    	    		</tr>
+	                    	    		<tr>
+	                    	    			<td>Titulo 07</td>
+	                    	    			<td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam posuere...</td>
+	                    	    			<td>
+	                    	    				<a class="btn btn-primary" href="#">Editar</a>
+											</td>
+	                    	    		</tr>
+	                    	    		<tr>
+	                    	    			<td>Titulo 08</td>
+	                    	    			<td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam posuere...</td>
+	                    	    			<td>
+	                    	    				<a class="btn btn-primary" href="#">Editar</a>
+											</td>
+	                    	    		</tr>
+	                    	    		<tr>
+	                    	    			<td>Titulo 09</td>
+	                    	    			<td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam posuere...</td>
+	                    	    			<td>
+	                    	    				<a class="btn btn-primary" href="#">Editar</a>
+											</td>
+	                    	    		</tr>
+	                    	    		<tr>
+	                    	    			<td>Titulo 10</td>
+	                    	    			<td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam posuere...</td>
+	                    	    			<td>
+	                    	    				<a class="btn btn-primary" href="#">Editar</a>
+											</td>
+	                    	    		</tr>
+	                    	    		<tr>
+	                    	    			<td>Titulo 11</td>
+	                    	    			<td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam posuere...</td>
+	                    	    			<td>
+	                    	    				<a class="btn btn-primary" href="#">Editar</a>
+											</td>
+	                    	    		</tr>
+	                    	    		<tr>
+	                    	    			<td>Titulo 12</td>
+	                    	    			<td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam posuere...</td>
+	                    	    			<td>
+	                    	    				<a class="btn btn-primary" href="#">Editar</a>
+											</td>
+	                    	    		</tr>
+	                    	    		<tr>
+	                    	    			<td>Titulo 13</td>
+	                    	    			<td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam posuere...</td>
+	                    	    			<td>
+	                    	    				<a class="btn btn-primary" href="#">Editar</a>
+											</td>
+	                    	    		</tr>
+	                    	    		<tr>
+	                    	    			<td>Titulo 14</td>
+	                    	    			<td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam posuere...</td>
+	                    	    			<td>
+	                    	    				<a class="btn btn-primary" href="#">Editar</a>
+											</td>
+	                    	    		</tr>
+	                    	    	</tbody>
+	                    	    	<tfoot>
+	                    	    		<tr>
+	                    	    			<th>Nombre</th>
+	                    	    			<th>Comentario</th>
+	                    	    			<th>Acciones</th>
+	                    	    		</tr>
+	                    	    	</tfoot>
+	                    	</table>
+	                    </div>
+                    </div>
                 </div>
             </div>
             <!-- /tabs -->
@@ -257,6 +494,23 @@ a{
         theme: 'fontawesome-stars'
       });
    });
+
+   $(document).ready( function () {
+    $('#myTable').DataTable({
+    	searching: false,
+    	responsive: true,
+    	"language": {
+    		"url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
+    	}
+    });
+    $('#myTable2').DataTable({
+    	searching: false,
+    	responsive: true,
+    	"language": {
+    		"url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
+    	}
+    });
+} );
 </script>
 </body>
 </html>
