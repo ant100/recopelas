@@ -1234,6 +1234,10 @@ font-weight: 700;
 }
 /*-- responsive-design starts-here --*/
 
+.featured2 ul li{
+	width: 15%;
+}
+
 @media screen and (max-width: 1440px) {
 	.header {
 		min-height: 661px;
@@ -1952,6 +1956,10 @@ font-weight: 700;
 	}
 }
 @media screen and (max-width: 480px) {
+	.featured2 ul li{
+		width: 40%;
+	}
+
 	.header-info {
 		display: none;
 	}
@@ -2259,6 +2267,10 @@ font-weight: 700;
 		height:156px;
 		overflow:hidden;
 	}
+
+	.featured2 ul li{
+		width: 40%;
+	}	
 }
 
 /* custom */
@@ -2301,4 +2313,8 @@ font-weight: 700;
 .usuario {
 	font-weight: bold;
 	display: block;
+}
+
+.pagenation2 {
+	margin-top: 2em;
 }
