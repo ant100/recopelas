@@ -95,11 +95,12 @@
 										</div>
 										<div id="collapseTwo" class="panel-collapse collapse">
 											<div class="panel-body">
-												<input type="text" id="anho" name="anho">
+													<input type="text" id="anho" name="anho">
 											</div>
 										</div>
 									</div>
-									<!--<div class="panel panel-primary">
+									
+									<!-- <div class="panel panel-primary">
 										<div class="panel-heading">
 											<h4 class="panel-title">
 												<a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">Calificación</a>
@@ -110,7 +111,8 @@
 													
 											</div>
 										</div>
-									</div>-->
+									</div> -->
+
 									<div class="panel panel-primary">
 										<div class="panel-heading">
 											<h4 class="panel-title">
@@ -141,14 +143,50 @@
 									</div>
 								</div>
 
-								<a href="/maquetas/main2.html" class="btn btn-primary btn-lg pull-right">
+								<button class="btn btn-primary btn-lg pull-right">
 									Recomendar
-								</a>	
+								</button>	
 							</div> 
 						</div>
 					</div>
 
-					<div class="col-md-7 reviews-grids">	
+					<div class="col-md-7 reviews-grids">
+							<div class="panel panel-primary">
+								<div class="panel-heading">
+									<h2 id="titulo" class="panel-title"></h2>
+								</div>
+								<div class="panel-body">
+									
+									<div class="col-md-6">
+										<img id="poster"  width="100%" />
+									</div>
+									<div class="col-md-6">
+										<br><br>
+										<h4>Calificación IMDB</h4>
+										<h3 id="valor-imdb"></h3><br>
+										<div class="clearfix"></div>
+										<h4>Calificación Rotten Tomatoes</h4>
+										<h3 id="valor-rotten"></h3><br>
+										<div class="clearfix"></div>
+										<h4>Calificación Nacional</h4>
+										<h3>☆☆☆☆☆ 4/5  </h3>
+										<div class="clearfix"></div>
+										<br><br>
+										<p>
+											<input type="checkbox" name="yala" id="yala">
+											<label for="yala">Ya ví esta película</label>
+										</p>
+										<br><br>
+										<a class="btn btn-default" href="details.html">
+											Ver detalle 
+										</a>
+									</div>
+								</div>
+							</div>
+							<button class="btn btn-danger btn-sm pull-right">
+								Otra Pelicula
+								<span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
+							</button>	
 					</div>
 					<div class="clearfix"></div>
 				</div>
@@ -158,17 +196,33 @@
 	</div>
 </body>
 	<!-- Custom Theme files -->
-	
 	<script src="assets/js/bootstrap.min.js"></script>
-
 	<script>
+		    $.getJSON("/maquetas/json/recomendacion.json", function (data) {
+		        $.each(data, function (index, value) {
+		           switch(index){
+		           		case 'titulo':
+		           			$("#titulo").text(value);
+		           			break;
+		           		case 'poster':
+		           			$("#poster").attr("src", value);
+		           			break;
+		           		case 'valor':
+		           			var revs = value.split(",");
+		           			$("#valor-imdb").text(revs[0]);
+		           			$("#valor-rotten").text(revs[1]);
+		           			break;
+		           }
+		        });
+		    });
+
 		    $.getJSON("/maquetas/json/generos.json", function (data) {
 		        $.each(data, function (index, value) {
 		           	$("#generos").append('<li class="list-group-item"><input type="checkbox" name="genero" value="'+data[index]["genero_id"]+'"> '+data[index]["genero_nombre"]+'</li>');
 		        });
 		    });
 
-		   	$.getJSON("/maquetas/json/directores.json", function(data){
+		    $.getJSON("/maquetas/json/directores.json", function(data){
 		   		$("#director").select2({
 				  data: data
 				});

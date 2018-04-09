@@ -22,10 +22,18 @@
 		<div class="menu">
 			<ul>
 				<li>
-					<a href="main.html">
+					<a href="/maquetas/main.html">
 						<div class="hm">
 							<i class="home1"></i>
 							<i class="home2"></i>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="/maquetas/reporte.html">
+						<div class="reporte glyphicon glyphicon-user glyphicon2">
+							<i class="reporte1"></i>
+							<i class="reporte2"></i>
 						</div>
 					</a>
 				</li> 
@@ -35,7 +43,7 @@
 			<div class="review-content">
 				<div class="top-header span_top">
 					<div class="logo">
-						<a href="main.html"><img src="assets/images/logo-recopelas.png" alt="" /></a>
+						<a href="/maquetas/main.html"><img src="assets/images/logo-recopelas.png" alt="" /></a>
 						<p>APP</p>
 					</div>
 						<!--<form class="pull-right">
@@ -50,15 +58,20 @@
 					<div class="col-md-8 col-md-offset-2">
 							<div class="panel panel-primary">
 								<div class="panel-heading">
-									<h2 class="panel-title">El Padrino</h2>
+									<h2 id="titulo" class="panel-title"></h2>
 								</div>
 								<div class="panel-body">
 									<div class="col-md-6">
 										
-										<iframe  src="https://www.youtube.com/embed/COQvkUmN6H8" frameborder="0" allowfullscreen width="100%" height="250px"></iframe>
+										<iframe id="trailer" frameborder="0" allowfullscreen width="100%" height="250px"></iframe>
 										<br><br>
 										<h4>Calificación Nacional</h4>
-										<h3>☆☆☆☆☆ 4/5  </h3>
+										<h3>4/5  </h3>
+										
+										<a href="/maquetas/criticas.html" class="btn btn-default pull-right">
+											Calificar		
+										</a>
+
 										<div class="clearfix"></div><br>
 										<h4>Critica:</h4>
 										<br>
@@ -73,34 +86,73 @@
 												<b>Luis Martínez</b>
 											</li>
 										</ul>
-
-										<button class="btn btn-default pull-right">
-											Calificar		
-										</button>
+										
 									</div>
 									<div class="col-md-6">
 										<h4>Calificación IMDB</h4>
-										<h3>☆☆☆☆☆ 3.5/5  </h3><br>
+										<p id="valor-imdb"></p><br>
 										<div class="clearfix"></div>
+										
 										<h4>Calificación Rotten Tomatoes</h4>
-										<h3>97%</h3><br>
+										<p id="valor-rotten"></p><br>
 										<div class="clearfix"></div>
+
+										<h4>Tipo</h4>
+										<p id="tipo"></p><br>
+										<div class="clearfix"></div>
+										
+										<h4>Género</h4>
+										<p id="genero"></p><br>
+										<div class="clearfix"></div>
+
+										<h4>Director</h4>
+										<p id="director"></p><br>
+										<div class="clearfix"></div>
+
+										<h4>Rated</h4>
+										<p id="rating"></p><br>
+										<div class="clearfix"></div>
+
+										<h4>Fecha de estreno</h4>
+										<p id="fecha"></p><br>
+										<div class="clearfix"></div>
+
+										<h4>Duración</h4>
+										<p id="duracion"></p><br>
+										<div class="clearfix"></div>
+
+										<h4>Idioma</h4>
+										<p id="idioma"></p><br>
+										<div class="clearfix"></div>
+
+										<h4>País</h4>
+										<p id="pais"></p><br>
+										<div class="clearfix"></div>
+
+										<h4>Productora</h4>
+										<p id="productora"></p><br>
+										<div class="clearfix"></div>
+
+										<h4>Premios</h4>
+										<p id="premios"></p><br>
+										<div class="clearfix"></div>
+
 										<h4>Sinopsis:</h4>
 										<br>
-										<p>América, años 40. Don Vito Corleone (Marlon Brando) es el respetado y temido jefe de una de las cinco familias de la mafia de Nueva York. Tiene cuatro hijos: Connie (Talia Shire), el impulsivo Sonny (James Caan), el pusilánime Fredo (John Cazale) y Michael (Al Pacino), que no quiere saber nada de los negocios de su padre. Cuando Corleone, en contra de los consejos de 'Il consigliere' Tom Hagen (Robert Duvall), se niega a participar en el negocio de las drogas, el jefe de otra banda ordena su asesinato. Empieza entonces una violenta y cruenta guerra entre las familias mafiosas.
+										<p id="sinopsis">
 										</p>
 										<br>
 										<h4>Reparto:</h4>
 										<br>
-										<p>Marlon Brando, Al Pacino, Talia Shire, James Caan, John Cazale. </p>
+										<p id="actores"></p>
 										<br>
 										<h4>Disponible en:</h4>
 										<br>
 										<img src="assets/images/netflix.png" width="45px" alt="">
 										<br>
-										<button class="btn btn-danger btn-sm pull-right">
+										<a href="/maquetas/main.html" class="btn btn-danger btn-sm pull-right">
 											Retornar
-										</button>	
+										</a>	
 									</div>
 								</div>
 							</div>
@@ -116,4 +168,62 @@
 	<!-- Custom Theme files -->
 	<script src="assets/js/jquery.min.js"></script>
 	<script src="assets/js/bootstrap.min.js"></script>
+
+	<script>
+		    $.getJSON("/maquetas/json/detalle.json", function (data) {
+		        $.each(data, function (index, value) {
+		           switch(index){
+		           		case 'titulo':
+		           			$("#titulo").text(value);
+		           			break;
+		           		case 'productora':
+		           			$("#productora").text(value);
+		           			break;
+		           		case 'rating':
+		           			$("#rating").text(value);
+		           			break;
+		           		case 'fecha estreno':
+		           			$("#fecha").text(value);
+		           			break;
+		           		case 'genero':
+		           			$("#genero").text(value);
+		           			break;
+		           		case 'duracion':
+		           			$("#duracion").text(value);
+		           			break;
+		           		case 'sinopsis':
+		           			$("#sinopsis").text(value);
+		           			break;
+		           		case 'tipo':
+		           			$("#tipo").text(value);
+		           			break;
+		           		case 'trailer':
+		           			$("#trailer").attr("src", "https://www.youtube.com/embed/"+value);
+		           			break;
+		           		case 'premios':
+		           			$("#premios").text(value);
+		           			break;
+		           		case 'idioma':
+		           			$("#idioma").text(value);
+		           			break;
+		           		case 'actores':
+		           			$("#actores").text(value);
+		           			break;
+		           		case 'pais':
+		           			$("#pais").text(value);
+		           			break;
+		           		case 'director':
+		           			$("#director").text(value);
+		           			break;
+		           		case 'fuente':
+		           			break;
+		           		case 'valor':
+		           			var revs = value.split(",");
+		           			$("#valor-imdb").text(revs[0]);
+		           			$("#valor-rotten").text(revs[1]);
+		           			break;
+		           }
+		        });
+		    });
+	</script>
 </html>

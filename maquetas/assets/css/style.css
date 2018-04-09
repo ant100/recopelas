@@ -2318,3 +2318,33 @@ font-weight: 700;
 .pagenation2 {
 	margin-top: 2em;
 }
+
+
+i.reporte1 {
+	width:60px;
+	display:block;
+}
+i.reporte2 {
+	width:60px;
+	display:none;
+}
+.menu ul li a:hover div.reporte i.reporte1{
+	display:none;
+}
+.menu ul li a:hover div.reporte i.reporte2{
+	display:block;
+}
+.menu ul li a.active div.reporte i.reporte1{
+	display:none;
+}
+.menu ul li a.active div.reporte i.reporte2{
+	display:block;
+}
+
+.glyphicon2{
+	height:60px;
+	font-size: 37px;
+color: #69695b;
+margin: auto;
+text-align: center;
+}

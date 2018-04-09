@@ -28,24 +28,32 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="full">
 			<div class="menu">
 				<ul>
-					<li><a href="index.html"><div class="hm"><i class="home1"></i><i class="home2"></i></div></a></li>
+					<li><a href="/maquetas/main.html"><div class="hm"><i class="home1"></i><i class="home2"></i></div></a></li>
+					<li>
+					<a href="/maquetas/reporte.html">
+						<div class="reporte glyphicon glyphicon-user glyphicon2">
+							<i class="reporte1"></i>
+							<i class="reporte2"></i>
+						</div>
+					</a>
+				</li>
 				</ul>
 			</div>
 		<div class="main">
 		<div class="review-content">
 			<div class="top-header span_top">
 				<div class="logo">
-					<a href="main.html"><img src="assets/images/logo-recopelas.png" alt="" /></a>
+					<a href="/maquetas/main.html"><img src="assets/images/logo-recopelas.png" alt="" /></a>
 					<p>APP</p>
 				</div>
 				<div class="clearfix"></div>
 			</div>
 			<div class="reviews-section">
-				<h3 class="head">Críticas</h3>
+				<h3 class="head">Comentarios</h3>
 				<div class="col-md-5 side-bar">
 					<!---->
 					<div class="grid-top grid-top2">
-						<h4>Otras críticas</h4>
+						<h4>Otros comentarios</h4>
 						<div class="review-slider">
 							<ul id="flexiselDemo1">
 								<li><a>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.<span class="usuario">Juan Perez</span></a></li>
@@ -86,11 +94,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="col-md-7 reviews-grids">
 					<div class="review">
 						<div class="movie-pic">
-							<a href="single.html"><img src="assets/images/r4.jpg" alt="" /></a>
+							<a><img id="poster" /></a>
 						</div>
 						<div class="review-info">
-							<a class="span" href="single.html">Lorem  <i>Movie Review</i></a>
-							<p class="dirctr"><a href="">Reagan Gavin Rasquinha, </a>TNN, Mar 12, 2015, 12.47PM IST</p>								
+							<a id="titulo" class="span"></a>
+							<p class="dirctr">
+								<a id="director"></a>,
+								<span id="rating"></span>, 
+								<span id="fecha"></span>
+							</p>								
 							
 							<div class="contact-form main-contact contact-form2 main-contact3">
 							<form>
@@ -105,7 +117,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<div class="clearfix"></div>
 														
 							<textarea placeholder="Crítica" maxlength="700"></textarea>
-							<a class="regresar" href="/main.html">Regresar</a>
+							<a class="regresar" href="/maquetas/details.html">Regresar</a>
 			 				<input type="submit" value="Enviar"/>
 			 				</form>
 			 			</div>
@@ -128,6 +140,28 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         theme: 'fontawesome-stars'
       });
    });
+
+   $.getJSON("/maquetas/json/criticas.json", function (data) {
+		        $.each(data, function (index, value) {
+		           switch(index){
+		           		case 'titulo':
+		           			$("#titulo").text(value);
+		           			break;
+		           		case 'rating':
+		           			$("#rating").text(value);
+		           			break;
+		           		case 'fecha estreno':
+		           			$("#fecha").text(value);
+		           			break;
+		           		case 'director':
+		           			$("#director").text(value);
+		           			break;
+		           		case 'poster':
+		           			$("#poster").attr("src", value);
+		           			break;
+		           }
+		        });
+		    });
 </script>
 </body>
 </html>
