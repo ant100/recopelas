@@ -1,0 +1,178 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="reviews-section">
+
+    <div class="col-md-5 side-bar">
+        
+        <div class="row">
+            <div class="col-sm-12 col-md-12">
+               
+                <div class="panel panel-primary panel-recofilter">
+                    <div class="panel-heading" data-toggle="collapse" data-target="#genre-panel">Género</div>
+                    <div id="genre-panel" class="panel-body collapse in">
+                        <select id="genres" class="selectpicker" data-live-search="true" data-width="100%" multiple="multiple" data-size="10">
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="panel panel-primary panel-recofilter">
+                    <div class="panel-heading" data-toggle="collapse" data-target="#actor-panel">Actor</div>
+                    <div id="actor-panel" class="panel-body collapse">
+                        <select id="actors" class="selectpicker" data-live-search="true" data-width="100%" multiple="multiple" data-size="10"> 
+                        </select>
+                    </div>
+                </div>
+
+                <div class="panel panel-primary panel-recofilter">
+                    <div class="panel-heading" data-toggle="collapse" data-target="#year-panel" data-size="10">Año</div>
+                    <div id="year-panel" class="panel-body collapse">
+                        <select id="years" class="selectpicker" data-live-search="true" data-width="100%" multiple="multiple" data-size="10"> 
+                            <option>2001</option>
+                            <option>2002</option>
+                            <option>2003</option>
+                            <option>2004</option>
+                            <option>2005</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="panel panel-primary panel-recofilter">
+                    <div class="panel-heading" data-toggle="collapse" data-target="#director-panel">Director</div>
+                    <div id="director-panel" class="panel-body collapse">
+                        <select id="directors" class="selectpicker" data-live-search="true" data-width="100%" multiple="multiple" data-size="10"> 
+                        </select>
+                    </div>
+                </div>
+                
+                <button class="btn btn-primary   pull-right">
+                    Recomendar
+                </button>   
+            </div> 
+        </div>
+    </div>
+
+    <div class="col-md-7 reviews-grids">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h2 id="titulo" class="panel-title"></h2>
+                </div>
+                <div class="panel-body">
+                    
+                    <div class="col-md-6">
+                        <img id="poster"  width="100%" />
+                    </div>
+                    <div class="col-md-6">
+                        <br><br>
+                        <h4>Calificación IMDB</h4>
+                        <h3 id="valor-imdb"></h3><br>
+                        <div class="clearfix"></div>
+                        <h4>Calificación Rotten Tomatoes</h4>
+                        <h3 id="valor-rotten"></h3><br>
+                        <div class="clearfix"></div>
+                        <h4>Calificación Nacional</h4>
+                        <h3>☆☆☆☆☆ 4/5  </h3>
+                        <div class="clearfix"></div>
+                        <br><br>
+                        <p>
+                            <input type="checkbox" name="yala" id="yala">
+                            <label for="yala">Ya ví esta película</label>
+                        </p>
+                        <br><br>
+                        <a class="btn btn-default" href="details.html">
+                            Ver detalle 
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-danger btn-sm pull-right">
+                Otra Pelicula
+                <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
+            </button>   
+    </div>
+    <div class="clearfix"></div>
+</div>
+
+@section scripts {
+
+<script>
+
+    'use_strict';
+    
+    $(function () {
+
+            var Recommender = {};
+
+            Recommender = (function () {
+
+                var events = function () {
+
+                     
+                };
+                var run = function () {
+
+                    Recommender.genders();
+                    Recommender.actors();
+                };
+
+                return {
+                    init: function () {
+                        events();
+                        run();
+                    },
+                     
+                    genders: function () {
+ 
+                        $.ajax({
+                            type: "get",
+                            url: "http://localhost:8080/recopelas-ws/api/genre",
+                            data: {},
+                            success: function (data) {
+                                console.log(data);
+                                $.each(data, function (index, item) {
+
+                                    $('#genres').append($('<option>', { 
+                                        value: item.id,
+                                        text : item.name 
+                                    }));
+                                });
+                                $('#genres').selectpicker('refresh');
+  
+                            },
+                            error: function (data) { console.log(data) }
+                        });
+
+                    }, 
+                    actors: function () {
+ 
+                        $.ajax({
+                            type: "get",
+                            url: "http://localhost:8080/recopelas-ws/api/actor",
+                            data: {},
+                            success: function (data) {
+                                console.log(data);
+                                $.each(data, function (index, item) {
+
+                                    $('#actors').append($('<option>', { 
+                                        value: item.id,
+                                        text : item.names 
+                                    }));
+                                });
+                                $('#actors').selectpicker('refresh');
+  
+                            },
+                            error: function (data) { console.log(data) }
+                        });
+                    } 
+                }
+
+            })();
+
+            Recommender.init();
+
+    });
+    
+</script>
+
+}

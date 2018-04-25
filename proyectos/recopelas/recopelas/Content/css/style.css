@@ -1,0 +1,19 @@
+body {
+    min-height: 2000px
+}
+
+.navbar-static-top {
+    margin-bottom: 19px
+}
+
+.panel-primary > .panel-heading {
+    color: #fff;
+    background-color: #1B242F;
+    border-color: #1B242F
+}
+
+
+.panel-recofilter {
+    margin-bottom: 5px !important
+
+}
