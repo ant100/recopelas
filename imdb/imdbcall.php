@@ -12,11 +12,8 @@ if ($mysqli->connect_errno) {
     exit();
 }
 
-// llamamos 1000 pues es el limite del API de imdb
-
-// The SQL query below says "return only 10 records, start on record 16 (OFFSET 15)":
-// $sql = "SELECT * FROM Orders LIMIT 10 OFFSET 15";
-$query = "SELECT imdb_imdbID FROM imdb order by imdb_id ASC limit 100";
+//$query = "SELECT imdb_imdbID FROM imdb order by imdb_id ASC limit 100";
+$query = "SELECT imdb_imdbID FROM imdb WHERE imdb_fech_registro >= curdate() - INTERVAL DAYOFWEEK(curdate())+6 DAY AND imdb_fech_registro < curdate() - INTERVAL DAYOFWEEK(curdate())-1 DAY"
 $result = $mysqli->query($query);
 $imdbids = array();
 
