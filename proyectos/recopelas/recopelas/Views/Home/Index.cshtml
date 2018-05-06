@@ -12,7 +12,7 @@
                 <div class="panel panel-primary panel-recofilter">
                     <div class="panel-heading" data-toggle="collapse" data-target="#genre-panel">Género</div>
                     <div id="genre-panel" class="panel-body collapse in">
-                        <select id="genres" class="selectpicker" data-live-search="true" data-width="100%" multiple="multiple" data-size="10">
+                        <select id="genres" class="selectpicker" data-live-search="true" data-width="100%" multiple="multiple" data-size="10" data-none-selected-text="Seleccionar">
                         </select>
                     </div>
                 </div>
@@ -20,7 +20,7 @@
                 <div class="panel panel-primary panel-recofilter">
                     <div class="panel-heading" data-toggle="collapse" data-target="#actor-panel">Actor</div>
                     <div id="actor-panel" class="panel-body collapse">
-                        <select id="actors" class="selectpicker" data-live-search="true" data-width="100%" multiple="multiple" data-size="10"> 
+                        <select id="actors" class="selectpicker" data-live-search="true" data-width="100%" multiple="multiple" data-size="10" data-none-selected-text="Seleccionar"> 
                         </select>
                     </div>
                 </div>
@@ -28,7 +28,7 @@
                 <div class="panel panel-primary panel-recofilter">
                     <div class="panel-heading" data-toggle="collapse" data-target="#year-panel" data-size="10">Año</div>
                     <div id="year-panel" class="panel-body collapse">
-                        <select id="years" class="selectpicker" data-live-search="true" data-width="100%" multiple="multiple" data-size="10"> 
+                        <select id="years" class="selectpicker" data-live-search="true" data-width="100%" multiple="multiple" data-size="10" data-none-selected-text="Seleccionar"> 
                             <option>2001</option>
                             <option>2002</option>
                             <option>2003</option>
@@ -41,12 +41,12 @@
                 <div class="panel panel-primary panel-recofilter">
                     <div class="panel-heading" data-toggle="collapse" data-target="#director-panel">Director</div>
                     <div id="director-panel" class="panel-body collapse">
-                        <select id="directors" class="selectpicker" data-live-search="true" data-width="100%" multiple="multiple" data-size="10"> 
+                        <select id="directors" class="selectpicker" data-live-search="true" data-width="100%" multiple="multiple" data-size="10" data-none-selected-text="Seleccionar"> 
                         </select>
                     </div>
                 </div>
                 
-                <button class="btn btn-primary   pull-right">
+                <button id="recommend" class="btn btn-primary pull-right">
                     Recomendar
                 </button>   
             </div> 
@@ -56,7 +56,7 @@
     <div class="col-md-7 reviews-grids">
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <h2 id="titulo" class="panel-title"></h2>
+                    <h2 id="title-name" class="panel-title"></h2>
                 </div>
                 <div class="panel-body">
                     
@@ -64,20 +64,33 @@
                         <img id="poster"  width="100%" />
                     </div>
                     <div class="col-md-6">
-                        <br><br>
-                        <h4>Calificación IMDB</h4>
-                        <h3 id="valor-imdb"></h3><br>
-                        <div class="clearfix"></div>
-                        <h4>Calificación Rotten Tomatoes</h4>
-                        <h3 id="valor-rotten"></h3><br>
-                        <div class="clearfix"></div>
-                        <h4>Calificación Nacional</h4>
-                        <h3>☆☆☆☆☆ 4/5  </h3>
-                        <div class="clearfix"></div>
-                        <br><br>
-                        <p>
-                            <input type="checkbox" name="yala" id="yala">
-                            <label for="yala">Ya ví esta película</label>
+                    
+                        <h4>Calificación</h4>
+                        <table class="table">
+                          <thead>
+                            <tr>
+                              <th scope="col">Fuente</th>
+                              <th scope="col">☆</th> 
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>Rotten Tomatoes</td>
+                              <td>1</td> 
+                            </tr>
+                            <tr>
+                              <td>IMDB</td>
+                              <td>%</td> 
+                            </tr>
+                            <tr>
+                              <td>Nacional</td>
+                              <td>2</td> 
+                            </tr>
+                          </tbody>
+                        </table>
+                        <hr>    
+                        <p> 
+                            <label for="yala"> <input type="checkbox" name="yala" id="yala"> Ya ví esta película</label>
                         </p>
                         <br><br>
                         <a class="btn btn-default" href="details.html">
@@ -86,7 +99,7 @@
                     </div>
                 </div>
             </div>
-            <button class="btn btn-danger btn-sm pull-right">
+            <button id="next-title" class="btn btn-danger btn-sm pull-right">
                 Otra Pelicula
                 <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
             </button>   
@@ -102,18 +115,31 @@
     
     $(function () {
 
+            var titleSelected = 0;
+            var titles;
             var Recommender = {};
 
             Recommender = (function () {
-
+                
                 var events = function () {
 
+                    $("#next-title").on('click', function(){
+                        titleSelected = titleSelected + 1;
+                        Recommender.setTitle();
+                    });
+
+                    $("#recommend").on("click", function(){
+                        titleSelected = titleSelected + 1;
+                        Recommender.setTitle();
+                    });
                      
                 };
                 var run = function () {
 
                     Recommender.genders();
                     Recommender.actors();
+                    Recommender.directors();
+                    Recommender.titles();
                 };
 
                 return {
@@ -121,6 +147,27 @@
                         events();
                         run();
                     },
+
+                    setTitle: function(data) {
+                        var item = $(titles)[titleSelected];
+                        $("#title-name").text(item.name)
+                        $("#poster").attr("src", item.posterPath); 
+                    },
+
+                    titles: function () {
+ 
+                        $.ajax({
+                            type: "get",
+                            url: "http://localhost:8080/recopelas-ws/api/title",
+                            data: {},
+                            success: function (data) {
+                               titles = data;
+                               Recommender.setTitle();      
+                            },
+                            error: function (data) { console.log(data) }
+                        });
+
+                    }, 
                      
                     genders: function () {
  
@@ -129,9 +176,8 @@
                             url: "http://localhost:8080/recopelas-ws/api/genre",
                             data: {},
                             success: function (data) {
-                                console.log(data);
+    
                                 $.each(data, function (index, item) {
-
                                     $('#genres').append($('<option>', { 
                                         value: item.id,
                                         text : item.name 
@@ -151,15 +197,35 @@
                             url: "http://localhost:8080/recopelas-ws/api/actor",
                             data: {},
                             success: function (data) {
-                                console.log(data);
+    
                                 $.each(data, function (index, item) {
-
                                     $('#actors').append($('<option>', { 
                                         value: item.id,
                                         text : item.names 
                                     }));
                                 });
                                 $('#actors').selectpicker('refresh');
+  
+                            },
+                            error: function (data) { console.log(data) }
+                        });
+                    }, 
+                    directors: function () {
+ 
+                        $.ajax({
+                            type: "get",
+                            url: "http://localhost:8080/recopelas-ws/api/director",
+                            data: {},
+                            success: function (data) {
+    
+                                $.each(data, function (index, item) {
+
+                                    $('#directors').append($('<option>', { 
+                                        value: item.id,
+                                        text : item.names 
+                                    }));
+                                });
+                                $('#directors').selectpicker('refresh');
   
                             },
                             error: function (data) { console.log(data) }

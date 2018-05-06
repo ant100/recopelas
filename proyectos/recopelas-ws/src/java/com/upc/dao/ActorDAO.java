@@ -8,23 +8,20 @@ import com.upc.entity.Actor;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import javax.ejb.Singleton;
+import javax.ejb.Singleton; 
 /**
  *
  * @author leo
- */ 
+ */
+@Singleton
 public class ActorDAO {
-     
-    private static final String USERNAME = "root";
-    private static final String PASSWORD = "";
-    private static final String URL = "jdbc:mysql://localhost:3306/recopelas";
-  
+      
     public List<Actor> getAll(){
         
         List<Actor> list = new ArrayList<Actor>();
         Connection conn = null;
         try {
-            conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+            conn = DriverManager.getConnection(Database.URL, Database.USERNAME, Database.PASSWORD);
             Statement stmt = (Statement) conn.createStatement();
             String query = "SELECT * FROM ACTORES LIMIT 100";
             ResultSet rs = stmt.executeQuery(query);

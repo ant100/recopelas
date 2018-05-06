@@ -4,9 +4,8 @@
  * and open the template in the editor.
  */
 package com.upc.dao;
-
-import com.upc.entity.Actor;
-import com.upc.entity.Genre;
+ 
+import com.upc.entity.Director;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -19,24 +18,24 @@ import javax.ejb.Singleton;
 /**
  *
  * @author leo
- */ 
+ */
 @Singleton
-public class GenreDAO {
-     
-    public List<Genre> getAll(){
+public class DirectorDAO {
+  
+    public List<Director> getAll(){
         
-        List<Genre> list = new ArrayList<Genre>();
+        List<Director> list = new ArrayList<Director>();
         Connection conn = null;
         try {
             conn = DriverManager.getConnection(Database.URL, Database.USERNAME, Database.PASSWORD);
             Statement stmt = (Statement) conn.createStatement();
-            String query = "SELECT * FROM GENEROS";
+            String query = "SELECT * FROM DIRECTORES";
             ResultSet rs = stmt.executeQuery(query);
             
             while (rs.next()) {
-                Genre el = new Genre();
-                el.setId(Integer.parseInt(rs.getString("genero_id"))); 
-                el.setName(rs.getString("genero_nombre"));
+                Director el = new Director();
+                el.setId(Integer.parseInt(rs.getString("director_id"))); 
+                el.setNames(rs.getString("director_nombre"));
                 list.add(el);
             }
             
@@ -46,5 +45,4 @@ public class GenreDAO {
             return null;
         }
     }
-    
 }

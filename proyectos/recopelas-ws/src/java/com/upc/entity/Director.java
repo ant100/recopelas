@@ -1,4 +1,4 @@
-    /*
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -9,7 +9,7 @@ package com.upc.entity;
  *
  * @author leo
  */
-public class Genre {
+public class Director {
 
     public int getId() {
         return Id;
@@ -19,14 +19,15 @@ public class Genre {
         this.Id = Id;
     }
 
-    public String getName() {
-        return Name;
+    public String getNames() {
+        return Names;
     }
 
-    public void setName(String Name) {
-        this.Name = Name;
+    public void setNames(String Names) {
+        this.Names = Names;
     }
     
     private int Id;
-    private String Name;
+    private String Names;
+    
 }

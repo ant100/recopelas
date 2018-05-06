@@ -30,7 +30,9 @@ public class ApplicationConfig extends Application {
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
         resources.add(com.upc.service.ActorREST.class);
+        resources.add(com.upc.service.DirectorREST.class);
         resources.add(com.upc.service.GenreREST.class);
+        resources.add(com.upc.service.TitleREST.class);
     }
     
 }
