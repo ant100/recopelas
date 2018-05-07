@@ -8,6 +8,12 @@ namespace recopelas
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+ 
+            routes.MapRoute(
+                name: "Title",
+                url: "titulo/{id}",
+                defaults: new { controller = "Title", action = "Index", id = UrlParameter.Optional }
+            );
 
             routes.MapRoute(
                 name: "Default",

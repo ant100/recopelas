@@ -89,8 +89,8 @@
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\LoginController.cs" />
-    <Compile Include="Controllers\RecommenderController.cs" />
     <Compile Include="App_Start\BootstrapBundleConfig.cs" />
+    <Compile Include="Controllers\TitleController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Web.config" />
@@ -102,8 +102,6 @@
     <Content Include="Global.asax" />
     <Content Include="packages.config" />
     <Content Include="Views\Login\Index.aspx" />
-    <Content Include="Views\Recommender\Index.aspx" />
-    <Content Include="Views\Recommender\Detail.aspx" />
     <Content Include="Scripts\jquery-1.9.0.min.js" />
     <Content Include="Scripts\jquery-1.9.0.js" />
     <Content Include="Scripts\jquery-1.9.0-vsdoc.js" />
@@ -123,6 +121,7 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Scripts\bootstrap-select.min.js" />
     <Content Include="Content\css\bootstrap-select.min.css" />
+    <Content Include="Views\Title\Index.aspx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\jquery-1.9.0.min.map" />

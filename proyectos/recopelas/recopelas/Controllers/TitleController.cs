@@ -6,16 +6,11 @@ using System.Web.Mvc;
 
 namespace recopelas.Controllers
 {
-    public class RecommenderController : Controller
+    public class TitleController : Controller
     {
-        public ActionResult Index()
+        public ActionResult Index(int Id)
         {
             return View ();
-        }
-
-        public ActionResult Detail(int Id)
-        {
-            return View();
         }
     }
 }
