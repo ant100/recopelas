@@ -5,7 +5,6 @@
  */
 package com.upc.dao;
 
-import com.mysql.cj.util.StringUtils;
 import com.upc.entity.Genre;
 import com.upc.entity.Title;
 import com.upc.model.Interest;
