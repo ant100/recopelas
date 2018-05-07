@@ -5,7 +5,7 @@
  */
 package com.upc.dao;
 
-import com.upc.entity.Studio;
+import com.upc.entity.Language;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -13,30 +13,30 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import javax.ejb.Singleton;
 
 /**
  *
  * @author leo
  */
-@Singleton
-public class StudioDAO {
-       
-    public List<Studio> getAll(){
+public class LanguageDAO {
+    
+    public List<Language> getByTitle(String title){
         
-        List<Studio> list = new ArrayList<Studio>();
+        List<Language> list = new ArrayList<Language>();
         Connection conn = null;
         try {
             conn = DriverManager.getConnection(Database.URL, Database.USERNAME, Database.PASSWORD);
             Statement stmt = (Statement) conn.createStatement();
-            String query = "SELECT * FROM PRODUCTORAS";
+            String query = "SELECT ID.IDIOMA_ID, ID.IDIOMA_NOMBRE FROM IDIOMAS ID "
+                    + "INNER JOIN TITULOS_IDIOMAS TI ON ID.IDIOMA_ID = TI.IDIOMA_ID "
+                    + "WHERE TI.TITULO_ID = " + title;
+            
             ResultSet rs = stmt.executeQuery(query);
-            RatingDAO ratingsDAO = new RatingDAO();
             
             while (rs.next()) {
-                Studio el = new Studio();
-                el.setId(Integer.parseInt(rs.getString("productora_id"))); 
-                el.setName(rs.getString("productora_nombre"));
+                Language el = new Language();
+                el.setId(Integer.parseInt(rs.getString("idioma_id"))); 
+                el.setName(rs.getString("idioma_nombre"));
                 list.add(el);
             }
             conn.close();
@@ -46,4 +46,5 @@ public class StudioDAO {
             return null;
         }
     }
+    
 }

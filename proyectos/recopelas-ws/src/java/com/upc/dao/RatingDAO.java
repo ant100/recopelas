@@ -13,14 +13,16 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import javax.ejb.Singleton;
 
 /**
  *
  * @author leo
  */
+@Singleton
 public class RatingDAO {
      
-    public List<Rating> getByTitle(String titulo){
+    public List<Rating> getByTitle(String title){
         
         List<Rating> list = new ArrayList<Rating>();
         Connection conn = null;
@@ -28,8 +30,8 @@ public class RatingDAO {
             conn = DriverManager.getConnection(Database.URL, Database.USERNAME, Database.PASSWORD);
             Statement stmt = (Statement) conn.createStatement();
             String query = "SELECT RS_NOMBRE, VALOR FROM RATINGS_SOURCE RS "
-                    + "INNER JOIN TITULOS_RATINGS_SOURCE TI "
-                    + "WHERE TI.RS_ID = 1 AND TI.TITULO_ID = " + titulo;
+                    + "INNER JOIN TITULOS_RATINGS_SOURCE TI ON RS.RS_ID = TI.RS_ID "
+                    + "WHERE TI.TITULO_ID = " + title;
             
             ResultSet rs = stmt.executeQuery(query);
             
@@ -39,7 +41,7 @@ public class RatingDAO {
                 el.setValue(rs.getString("valor"));
                 list.add(el);
             }
-            
+            conn.close();
             return list;
             
         }catch (SQLException e){

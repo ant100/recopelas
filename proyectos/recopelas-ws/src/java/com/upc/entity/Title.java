@@ -69,14 +69,14 @@ public class Title {
         this.Ratings = Ratings;
     }
 
-    public String getPrices() {
-        return Prices;
+    public String getPrizes() {
+        return Prizes;
     }
 
-    public void setPrices(String Prices) {
-        this.Prices = Prices;
+    public void setPrizes(String Prizes) {
+        this.Prizes = Prizes;
     }
- 
+
     public String getDuration() {
         return Duration;
     }
@@ -92,6 +92,38 @@ public class Title {
     public void setStudio(String Studio) {
         this.Studio = Studio;
     }
+
+    public List<Actor> getActors() {
+        return Actors;
+    }
+
+    public void setActors(List<Actor> Actors) {
+        this.Actors = Actors;
+    }
+
+    public List<Director> getDirectors() {
+        return Directors;
+    }
+
+    public void setDirectors(List<Director> Directors) {
+        this.Directors = Directors;
+    }
+
+    public List<Genre> getGenres() {
+        return Genres;
+    }
+
+    public void setGenres(List<Genre> Genres) {
+        this.Genres = Genres;
+    }
+
+    public List<Language> getLanguages() {
+        return Languages;
+    }
+
+    public void setLanguages(List<Language> Languages) {
+        this.Languages = Languages;
+    }
     
     private int Id;
     private String Name;
@@ -100,8 +132,12 @@ public class Title {
     private String PosterPath;
     private String Synopsis;
     private List<Rating> Ratings;
-    private String Prices;
+    private String Prizes;
     private String Duration;
     private String Studio;
+    private List<Actor> Actors;
+    private List<Director> Directors;
+    private List<Genre> Genres;
+    private List<Language> Languages;
     
 }

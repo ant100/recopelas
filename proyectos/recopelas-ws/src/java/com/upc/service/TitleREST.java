@@ -7,7 +7,9 @@ package com.upc.service;
 
 import com.upc.dao.TitleDAO;
 import com.upc.entity.Title;
+import com.upc.entity.Yala;
 import com.upc.model.Interest;
+import com.upc.model.Response;
 import java.util.List;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
@@ -47,9 +49,9 @@ public class TitleREST {
     @GET
     @Path("{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Title find(@PathParam("id") Integer id) {
-        
-        return null;
+    public Title find(@PathParam("id") String id) {
+        TitleDAO titleDAO = new TitleDAO();
+        return titleDAO.get(id);
     }
     
     @POST
@@ -58,5 +60,24 @@ public class TitleREST {
     public List<Title> recommendation(Interest interest) {
         TitleDAO titleDAO = new TitleDAO(); 
         return titleDAO.gerRecommended(interest);
+    }
+    
+    @POST
+    @Path("viewed")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response viewed(Yala yala) {
+        
+        Response res = new Response();
+        try {
+            TitleDAO titleDAO = new TitleDAO();
+            titleDAO.saveViewed(yala);
+            res.setCode(1);
+            res.setMessage("ok");
+        }
+        catch(Exception e){
+            res.setCode(0);
+            res.setMessage(e.getMessage());
+        }
+        return res;
     }
 }

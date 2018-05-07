@@ -17,11 +17,22 @@ import java.util.stream.Collectors;
  */
 public class Interest {
 
+    private String User;
     private List<String> Genres;
     private List<String> Actors;
     private List<String> Years;
     private List<String> Directors;
     private List<String> Studios;
+
+    public String getUser() {
+        return User;
+    }
+
+    public void setUser(String User) {
+        this.User = User;
+    }
+    
+    
     
     public List<String> getGenres() {
         return Genres;

@@ -38,7 +38,33 @@ public class DirectorDAO {
                 el.setNames(rs.getString("director_nombre"));
                 list.add(el);
             }
+            conn.close();
+            return list;
             
+        }catch (SQLException e){
+            return null;
+        }
+    }
+    
+    public List<Director> getByTitle(String title){
+        
+        List<Director> list = new ArrayList<Director>();
+        Connection conn = null;
+        try {
+            conn = DriverManager.getConnection(Database.URL, Database.USERNAME, Database.PASSWORD);
+            Statement stmt = (Statement) conn.createStatement();
+            String query = "SELECT DI.DIRECTOR_ID, DI.DIRECTOR_NOMBRE FROM DIRECTORES DI "
+                    + "INNER JOIN TITULOS_DIRECTORES TD ON DI.DIRECTOR_ID = TD.DIRECTOR_ID "
+                    + "WHERE TD.TITULO_ID = " + title;
+            ResultSet rs = stmt.executeQuery(query);
+            
+            while (rs.next()) {
+                Director el = new Director();
+                el.setId(Integer.parseInt(rs.getString("director_id"))); 
+                el.setNames(rs.getString("director_nombre"));
+                list.add(el);
+            }
+            conn.close();
             return list;
             
         }catch (SQLException e){
