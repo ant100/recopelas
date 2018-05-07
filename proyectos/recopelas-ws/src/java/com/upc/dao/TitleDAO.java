@@ -49,14 +49,36 @@ public class TitleDAO {
         }
     }
     
-        public List<Title> gerRecommended(Interest interests){
+    public List<Title> gerRecommended(Interest interests){
         
         List<Title> list = new ArrayList<Title>();
         Connection conn = null;
         try {
             conn = DriverManager.getConnection(Database.URL, Database.USERNAME, Database.PASSWORD);
             Statement stmt = (Statement) conn.createStatement();
-            String query = "SELECT * FROM TITULOS LIMIT 10";
+
+            String query = "SELECT DISTINCT TI.TITULO_ID, TITULO_NOMBRE, TITULO_RATED, TITULO_FECHA, TITULO_POSTER, TITULO_SINOPSIS FROM TITULOS TI " +
+                            "INNER JOIN TITULOS_GENEROS TG ON TG.TITULO_ID = TI.TITULO_ID " +
+                            "INNER JOIN TITULOS_ACTORES TA ON TA.TITULO_ID = TI.TITULO_ID " +
+                            "INNER JOIN TITULOS_DIRECTORES TD ON TD.TITULO_ID = TI.TITULO_ID " +
+                            "WHERE TI.TITULO_NOMBRE IS NOT NULL";
+            
+            if (interests.getGenres() != null){
+                query = query.concat(" AND TG.GENERO_ID IN (" + interests.getGenresId() + ")");
+            }
+            
+            if (interests.getActors() != null){
+                query = query.concat(" AND TA.ACTOR_ID IN (" + interests.getActorsId() + ")");
+            }
+            
+            if (interests.getYears() != null){
+                query = query.concat(" AND SUBSTRING_INDEX(TI.TITULO_FECHA, ' ', -1) IN ("  + interests.getYearsId() + ")");
+            }
+            
+            if (interests.getDirectors() != null){
+                query = query.concat(" AND TD.DIRECTOR_ID IN (" + interests.getDirectorsId() + ")");
+            }
+            
             ResultSet rs = stmt.executeQuery(query);
             
             while (rs.next()) {

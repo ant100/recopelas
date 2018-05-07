@@ -9,6 +9,7 @@ import com.upc.entity.Actor;
 import com.upc.entity.Director;
 import com.upc.entity.Genre;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -19,7 +20,7 @@ public class Interest {
     private List<Actor> Actors;
     private List<Integer> Years;
     private List<Director> Directors;
-    
+        
     public List<Actor> getActors() {
         return Actors;
     }
@@ -51,5 +52,24 @@ public class Interest {
 
     public void setGenres(List<Genre> Genres) {
         this.Genres = Genres;
+    }
+
+    public String getGenresId() {
+        List<Integer> list = Genres.stream().map(Genre::getId).collect(Collectors.toList());
+        return list.toString().substring(1, list.toString().length()-1);
+    }
+    
+    public String getActorsId() {
+        List<Integer> list = Actors.stream().map(Actor::getId).collect(Collectors.toList());
+        return list.toString().substring(1, list.toString().length()-1);
+    }
+    
+    public String getDirectorsId() {
+        List<Integer> list = Directors.stream().map(Director::getId).collect(Collectors.toList());
+        return list.toString().substring(1, list.toString().length()-1);
+    }
+
+    public String getYearsId() {
+        return Years.toString().substring(1, Years.toString().length()-1);
     }
 }
