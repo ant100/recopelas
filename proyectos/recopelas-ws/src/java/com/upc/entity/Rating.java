@@ -9,6 +9,25 @@ package com.upc.entity;
  *
  * @author leo
  */
-class Rating {
+public class Rating {
+
+    public String getSource() {
+        return Source;
+    }
+
+    public void setSource(String Source) {
+        this.Source = Source;
+    }
+
+    public String getValue() {
+        return Value;
+    }
+
+    public void setValue(String Value) {
+        this.Value = Value;
+    }
+    
+    private String Source;
+    private String Value;
     
 }

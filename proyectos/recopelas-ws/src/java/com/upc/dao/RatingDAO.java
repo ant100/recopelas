@@ -5,7 +5,7 @@
  */
 package com.upc.dao;
 
-import com.upc.entity.Raiting;
+import com.upc.entity.Rating;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -20,18 +20,21 @@ import java.util.List;
  */
 public class RatingDAO {
      
-    public List<Raiting> getAll(){
+    public List<Rating> getByTitle(String titulo){
         
-        List<Raiting> list = new ArrayList<Raiting>();
+        List<Rating> list = new ArrayList<Rating>();
         Connection conn = null;
         try {
             conn = DriverManager.getConnection(Database.URL, Database.USERNAME, Database.PASSWORD);
             Statement stmt = (Statement) conn.createStatement();
-            String query = "SELECT RS_NOMBRE, VALOR FROM RATINGS_SOURCE RS INNER JOIN TITULOS_RATINGS_SOURCE TI WHERE TI.TITULO_ID = 1 AND TI.RS_ID = 1";
+            String query = "SELECT RS_NOMBRE, VALOR FROM RATINGS_SOURCE RS "
+                    + "INNER JOIN TITULOS_RATINGS_SOURCE TI "
+                    + "WHERE TI.RS_ID = 1 AND TI.TITULO_ID = " + titulo;
+            
             ResultSet rs = stmt.executeQuery(query);
             
             while (rs.next()) {
-                Raiting el = new Raiting();
+                Rating el = new Rating();
                 el.setSource(rs.getString("rs_nombre")); 
                 el.setValue(rs.getString("valor"));
                 list.add(el);

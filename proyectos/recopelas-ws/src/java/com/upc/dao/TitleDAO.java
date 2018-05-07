@@ -5,6 +5,8 @@
  */
 package com.upc.dao;
 
+import com.mysql.cj.util.StringUtils;
+import com.upc.entity.Genre;
 import com.upc.entity.Title;
 import com.upc.model.Interest;
 import java.sql.Connection;
@@ -14,6 +16,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -28,8 +31,9 @@ public class TitleDAO {
         try {
             conn = DriverManager.getConnection(Database.URL, Database.USERNAME, Database.PASSWORD);
             Statement stmt = (Statement) conn.createStatement();
-            String query = "SELECT * FROM TITULOS LIMIT 10";
+            String query = "SELECT * FROM TITULOS LIMIT 15";
             ResultSet rs = stmt.executeQuery(query);
+            RatingDAO ratingsDAO = new RatingDAO();
             
             while (rs.next()) {
                 Title el = new Title();
@@ -39,6 +43,8 @@ public class TitleDAO {
                 el.setRealease(rs.getString("titulo_fecha"));
                 el.setPosterPath(rs.getString("titulo_poster"));
                 el.setSynopsis(rs.getString("titulo_sinopsis"));
+                el.setPrices(rs.getString("titulo_premios"));
+                el.setRatings(ratingsDAO.getByTitle(rs.getString("titulo_id")));
                 list.add(el);
             }
             
@@ -57,7 +63,7 @@ public class TitleDAO {
             conn = DriverManager.getConnection(Database.URL, Database.USERNAME, Database.PASSWORD);
             Statement stmt = (Statement) conn.createStatement();
 
-            String query = "SELECT DISTINCT TI.TITULO_ID, TITULO_NOMBRE, TITULO_RATED, TITULO_FECHA, TITULO_POSTER, TITULO_SINOPSIS FROM TITULOS TI " +
+            String query = "SELECT DISTINCT TI.TITULO_ID, TITULO_NOMBRE, TITULO_RATED, TITULO_FECHA, TITULO_POSTER, TITULO_SINOPSIS, TITULO_PREMIOS FROM TITULOS TI " +
                             "INNER JOIN TITULOS_GENEROS TG ON TG.TITULO_ID = TI.TITULO_ID " +
                             "INNER JOIN TITULOS_ACTORES TA ON TA.TITULO_ID = TI.TITULO_ID " +
                             "INNER JOIN TITULOS_DIRECTORES TD ON TD.TITULO_ID = TI.TITULO_ID " +
@@ -79,7 +85,11 @@ public class TitleDAO {
                 query = query.concat(" AND TD.DIRECTOR_ID IN (" + interests.getDirectorsId() + ")");
             }
             
+            query = query.concat(" LIMIT 20");
+            
+            System.out.println(query);
             ResultSet rs = stmt.executeQuery(query);
+            RatingDAO ratingsDAO = new RatingDAO();
             
             while (rs.next()) {
                 Title el = new Title();
@@ -88,7 +98,9 @@ public class TitleDAO {
                 el.setRated(rs.getString("titulo_rated"));
                 el.setRealease(rs.getString("titulo_fecha"));
                 el.setPosterPath(rs.getString("titulo_poster"));
-                el.setSynopsis(rs.getString("titulo_sinopsis"));
+                el.setSynopsis(rs.getString("titulo_sinopsis"));                
+                el.setPrices(rs.getString("titulo_premios"));
+                el.setRatings(ratingsDAO.getByTitle(rs.getString("titulo_id")));
                 list.add(el);
             }
             

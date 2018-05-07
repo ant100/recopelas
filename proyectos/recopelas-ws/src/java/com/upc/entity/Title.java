@@ -68,6 +68,14 @@ public class Title {
     public void setRatings(List<Rating> Ratings) {
         this.Ratings = Ratings;
     }
+
+    public String getPrices() {
+        return Prices;
+    }
+
+    public void setPrices(String Prices) {
+        this.Prices = Prices;
+    }
     
     private int Id;
     private String Name;
@@ -76,5 +84,6 @@ public class Title {
     private String PosterPath;
     private String Synopsis;
     private List<Rating> Ratings;
+    private String Prices;
     
 }

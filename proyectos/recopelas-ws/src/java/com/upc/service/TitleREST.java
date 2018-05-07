@@ -17,6 +17,7 @@ import javax.ws.rs.GET;
 import static javax.ws.rs.HttpMethod.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.POST;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.core.MediaType;
 
 /**
@@ -35,24 +36,27 @@ public class TitleREST {
      */
     public TitleREST() {
     }
-
-    /**
-     * Retrieves representation of an instance of com.upc.service.TitleREST
-     * @return an instance of java.lang.String
-     */
+ 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Title> getJson() {
+    public List<Title> findAll() {
         TitleDAO titleDAO = new TitleDAO();
         return titleDAO.getAll();
     }
 
+    @GET
+    @Path("{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Title find(@PathParam("id") Integer id) {
+        
+        return null;
+    }
+    
     @POST
     @Path("recommendation")
     @Produces(MediaType.APPLICATION_JSON)
     public List<Title> recommendation(Interest interest) {
-        TitleDAO titleDAO = new TitleDAO();
-        System.out.println(interest.getGenres().get(0).getName());
-        return titleDAO.getAll();
+        TitleDAO titleDAO = new TitleDAO(); 
+        return titleDAO.gerRecommended(interest);
     }
 }
