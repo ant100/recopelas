@@ -76,6 +76,22 @@ public class Title {
     public void setPrices(String Prices) {
         this.Prices = Prices;
     }
+ 
+    public String getDuration() {
+        return Duration;
+    }
+
+    public void setDuration(String Duration) {
+        this.Duration = Duration;
+    }
+
+    public String getStudio() {
+        return Studio;
+    }
+
+    public void setStudio(String Studio) {
+        this.Studio = Studio;
+    }
     
     private int Id;
     private String Name;
@@ -85,5 +101,7 @@ public class Title {
     private String Synopsis;
     private List<Rating> Ratings;
     private String Prices;
+    private String Duration;
+    private String Studio;
     
 }

@@ -30,7 +30,7 @@ public class TitleDAO {
         try {
             conn = DriverManager.getConnection(Database.URL, Database.USERNAME, Database.PASSWORD);
             Statement stmt = (Statement) conn.createStatement();
-            String query = "SELECT * FROM TITULOS LIMIT 15";
+            String query = "SELECT * FROM TITULOS ORDER BY RAND() LIMIT 15";
             ResultSet rs = stmt.executeQuery(query);
             RatingDAO ratingsDAO = new RatingDAO();
             
@@ -48,6 +48,36 @@ public class TitleDAO {
             }
             
             return list;
+            
+        }catch (SQLException e){
+            return null;
+        }
+    }
+    
+    public Title get(String Id){
+        
+        Connection conn = null;
+        try {
+            conn = DriverManager.getConnection(Database.URL, Database.USERNAME, Database.PASSWORD);
+            Statement stmt = (Statement) conn.createStatement();
+            String query = "SELECT * FROM TITULOS WHERE TITULO_ID = " + Id;
+            ResultSet rs = stmt.executeQuery(query);
+            RatingDAO ratingsDAO = new RatingDAO();
+            
+            Title el = new Title();
+
+            while (rs.next()) {
+                el.setId(Integer.parseInt(rs.getString("titulo_id"))); 
+                el.setName(rs.getString("titulo_nombre"));
+                el.setRated(rs.getString("titulo_rated"));
+                el.setRealease(rs.getString("titulo_fecha"));
+                el.setPosterPath(rs.getString("titulo_poster"));
+                el.setSynopsis(rs.getString("titulo_sinopsis"));
+                el.setPrices(rs.getString("titulo_premios"));
+                el.setRatings(ratingsDAO.getByTitle(rs.getString("titulo_id")));
+            }
+            
+            return el;
             
         }catch (SQLException e){
             return null;
@@ -83,8 +113,12 @@ public class TitleDAO {
             if (interests.getDirectors() != null){
                 query = query.concat(" AND TD.DIRECTOR_ID IN (" + interests.getDirectorsId() + ")");
             }
+
+            if (interests.getStudios() != null){
+                query = query.concat(" AND TI.PRODUCTORA_ID IN (" + interests.getStudiosId()+ ")");
+            }
             
-            query = query.concat(" LIMIT 20");
+            query = query.concat(" ORDER BY RAND() LIMIT 20");
             
             System.out.println(query);
             ResultSet rs = stmt.executeQuery(query);

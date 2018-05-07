@@ -33,6 +33,7 @@ public class ApplicationConfig extends Application {
         resources.add(com.upc.service.DirectorREST.class);
         resources.add(com.upc.service.GenreREST.class);
         resources.add(com.upc.service.QueueREST.class);
+        resources.add(com.upc.service.StudioREST.class);
         resources.add(com.upc.service.TitleREST.class);
     }
     

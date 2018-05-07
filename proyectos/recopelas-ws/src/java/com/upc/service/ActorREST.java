@@ -34,24 +34,11 @@ public class ActorREST {
      */
     public ActorREST() {
     }
-
-    /**
-     * Retrieves representation of an instance of com.upc.service.ActorREST
-     * @return an instance of java.lang.String
-     */
+ 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Actor> getJson() {
+    public List<Actor> findAll() {
         ActorDAO actorDAO = new ActorDAO();
         return actorDAO.getAll();
-    }
-
-    /**
-     * PUT method for updating or creating an instance of ActorREST
-     * @param content representation for the resource
-     */
-    @PUT
-    @Consumes(MediaType.APPLICATION_JSON)
-    public void putJson(String content) {
     }
 }

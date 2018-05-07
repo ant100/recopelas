@@ -21,6 +21,7 @@ public class Interest {
     private List<String> Actors;
     private List<String> Years;
     private List<String> Directors;
+    private List<String> Studios;
     
     public List<String> getGenres() {
         return Genres;
@@ -53,6 +54,14 @@ public class Interest {
     public void setDirectors(List<String> Directors) {
         this.Directors = Directors;
     }
+
+    public List<String> getStudios() {
+        return Studios;
+    }
+
+    public void setStudios(List<String> Studios) {
+        this.Studios = Studios;
+    }    
  
     public String getGenresId() {
         return String.join(",", Genres);
@@ -68,5 +77,9 @@ public class Interest {
 
     public String getYearsId() {
         return String.join(",", Years);
+    }
+    
+    public String getStudiosId() {
+        return String.join(",", Studios);
     }
 }

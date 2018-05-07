@@ -33,24 +33,11 @@ public class DirectorREST {
      */
     public DirectorREST() {
     }
-
-    /**
-     * Retrieves representation of an instance of com.upc.service.DirectorREST
-     * @return an instance of java.lang.String
-     */
+ 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Director> getJson() {
+    public List<Director> findAll() {
         DirectorDAO directorDAO = new DirectorDAO();
         return directorDAO.getAll();
-    }
-
-    /**
-     * PUT method for updating or creating an instance of DirectorREST
-     * @param content representation for the resource
-     */
-    @PUT
-    @Consumes(MediaType.APPLICATION_JSON)
-    public void putJson(String content) {
     }
 }
