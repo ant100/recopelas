@@ -3,12 +3,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div class="reviews-section">
-
     <div class="col-md-5 side-bar">
-        
         <div class="row">
             <div class="col-sm-12 col-md-12">
-               
                 <div class="panel panel-primary panel-recofilter">
                     <div class="panel-heading" data-toggle="collapse" data-target="#genre-panel">Género</div>
                     <div id="genre-panel" class="panel-body collapse in">
@@ -16,7 +13,6 @@
                         </select>
                     </div>
                 </div>
-                
                 <div class="panel panel-primary panel-recofilter">
                     <div class="panel-heading" data-toggle="collapse" data-target="#actor-panel">Actor</div>
                     <div id="actor-panel" class="panel-body collapse">
@@ -24,7 +20,6 @@
                         </select>
                     </div>
                 </div>
-
                 <div class="panel panel-primary panel-recofilter">
                     <div class="panel-heading" data-toggle="collapse" data-target="#year-panel" data-size="10">Año</div>
                     <div id="year-panel" class="panel-body collapse">
@@ -37,7 +32,6 @@
                         </select>
                     </div>
                 </div>
-                
                 <div class="panel panel-primary panel-recofilter">
                     <div class="panel-heading" data-toggle="collapse" data-target="#director-panel">Director</div>
                     <div id="director-panel" class="panel-body collapse">
@@ -45,200 +39,311 @@
                         </select>
                     </div>
                 </div>
-                
-                <button id="recommend" class="btn btn-primary pull-right">
-                    Recomendar
-                </button>   
+                <div class="panel panel-primary panel-recofilter">
+                    <div class="panel-heading" data-toggle="collapse" data-target="#studio-panel">Studio</div>
+                    <div id="studio-panel" class="panel-body collapse">
+                        <select id="studios" class="selectpicker" data-live-search="true" data-width="100%" multiple="multiple" data-size="10"> 
+                        </select>
+                    </div>
+                </div>
+                <br/>
+                <button class="btn btn-primary pull-right btn-block" id="btn-recommend">Recomendar</button>
             </div> 
         </div>
     </div>
-
     <div class="col-md-7 reviews-grids">
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h2 id="title-name" class="panel-title"></h2>
                 </div>
                 <div class="panel-body">
-                    
                     <div class="col-md-6">
-                        <img id="poster"  width="100%" />
+                        <img id="poster" width="100%" />
                     </div>
                     <div class="col-md-6">
-                    
                         <h4>Calificación</h4>
                         <table class="table">
-                          <thead>
-                            <tr>
-                              <th scope="col">Fuente</th>
-                              <th scope="col">☆</th> 
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <td>Rotten Tomatoes</td>
-                              <td>1</td> 
-                            </tr>
-                            <tr>
-                              <td>IMDB</td>
-                              <td>%</td> 
-                            </tr>
-                            <tr>
-                              <td>Nacional</td>
-                              <td>2</td> 
-                            </tr>
-                          </tbody>
+                            <thead>
+                                <tr><th scope="col">Fuente</th><th scope="col">☆</th></tr>
+                            </thead>
+                            <tbody id="rating-source">
+                                <!-- template -->
+                            </tbody>
                         </table>
                         <hr>    
-                        <p> 
-                            <label for="yala"> <input type="checkbox" name="yala" id="yala"> Ya ví esta película</label>
-                        </p>
+                        <p><label for="yala"><input type="checkbox" name="yala" id="yala" data-movie-id="0">&nbsp;Ya ví esta película</label></p>
                         <br><br>
-                        <a class="btn btn-default" href="details.html">
-                            Ver detalle 
-                        </a>
+                        <a class="btn btn-default" id="movie-detail-link">Ver detalle</a>
                     </div>
                 </div>
             </div>
-            <button id="next-title" class="btn btn-danger btn-sm pull-right">
+            <button id="next-title" class="btn btn-danger btn-sm pull-right" disabled="disabled">
                 Otra Pelicula
                 <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
             </button>   
     </div>
     <div class="clearfix"></div>
 </div>
-
 @section scripts {
-
-<script>
-
-    'use_strict';
-    
-    $(function () {
-
-            var titleSelected = 0;
-            var titles;
-            var Recommender = {};
-
-            Recommender = (function () {
-                
-                var events = function () {
-
-                    $("#next-title").on('click', function(){
-                        titleSelected = titleSelected + 1;
-                        Recommender.setTitle();
-                    });
-
-                    $("#recommend").on("click", function(){
-                        titleSelected = titleSelected + 1;
-                        Recommender.setTitle();
-                    });
-                     
-                };
-                var run = function () {
-
-                    Recommender.genders();
-                    Recommender.actors();
-                    Recommender.directors();
-                    Recommender.titles();
-                };
-
-                return {
-                    init: function () {
-                        events();
-                        run();
-                    },
-
-                    setTitle: function(data) {
-                        var item = $(titles)[titleSelected];
-                        $("#title-name").text(item.name)
-                        $("#poster").attr("src", item.posterPath); 
-                    },
-
-                    titles: function () {
- 
-                        $.ajax({
-                            type: "get",
-                            url: "http://localhost:8080/recopelas-ws/api/title",
-                            data: {},
-                            success: function (data) {
-                               titles = data;
-                               Recommender.setTitle();      
-                            },
-                            error: function (data) { console.log(data) }
-                        });
-
-                    }, 
-                     
-                    genders: function () {
- 
-                        $.ajax({
-                            type: "get",
-                            url: "http://localhost:8080/recopelas-ws/api/genre",
-                            data: {},
-                            success: function (data) {
-    
-                                $.each(data, function (index, item) {
-                                    $('#genres').append($('<option>', { 
-                                        value: item.id,
-                                        text : item.name 
-                                    }));
-                                });
-                                $('#genres').selectpicker('refresh');
-  
-                            },
-                            error: function (data) { console.log(data) }
-                        });
-
-                    }, 
-                    actors: function () {
- 
-                        $.ajax({
-                            type: "get",
-                            url: "http://localhost:8080/recopelas-ws/api/actor",
-                            data: {},
-                            success: function (data) {
-    
-                                $.each(data, function (index, item) {
-                                    $('#actors').append($('<option>', { 
-                                        value: item.id,
-                                        text : item.names 
-                                    }));
-                                });
-                                $('#actors').selectpicker('refresh');
-  
-                            },
-                            error: function (data) { console.log(data) }
-                        });
-                    }, 
-                    directors: function () {
- 
-                        $.ajax({
-                            type: "get",
-                            url: "http://localhost:8080/recopelas-ws/api/director",
-                            data: {},
-                            success: function (data) {
-    
-                                $.each(data, function (index, item) {
-
-                                    $('#directors').append($('<option>', { 
-                                        value: item.id,
-                                        text : item.names 
-                                    }));
-                                });
-                                $('#directors').selectpicker('refresh');
-  
-                            },
-                            error: function (data) { console.log(data) }
-                        });
-                    } 
+    <script>
+        'use_strict';
+        $(function () {
+                // TODO: years
+                var Recommender = {};
+                var apiRoute = 'http://192.168.0.16:3002/recopelas-ws/api/';
+                var disabledClass = 'disabled-button';
+                var spinnerLoader = '<span class="glyphicon glyphicon-repeat fast-right-spinner"></span>';
+                // user id
+                var userId = 1;
+                // main recommend object
+                var recommendParams = {
+                    "user": userId
+                }
+                // recommend result object
+                var recommedResult;
+                var moviePosition = 0;
+                // movie has been seen toggle object
+                var movieSeenParams = {
+                    "user": userId
                 }
 
-            })();
+                Recommender = (function () {
+                    var run = function () {
+                        Recommender.genders();
+                        Recommender.actors();
+                        Recommender.directors();
+                        Recommender.studios();
+                    };
+                    var events = function(){
+                        // get recommended movies
+                        $('#btn-recommend').on('click', function(){
+                            var _this = $(this);
+                            var buttonText = _this.html();
+                            if(Object.keys(recommendParams).length < 2){
+                                alert('Seleccione minimo una categoria.');
+                                console.log('Seleccione minimo una categoria.');
+                                return;
+                            }
 
-            Recommender.init();
+                            _this.addClass(disabledClass);
+                            _this.html(spinnerLoader);
+                            var jsonObject = JSON.stringify(recommendParams);
+                            $.ajax({
+                                type: "post",
+                                url: apiRoute+"title/recommendation/",
+                                data: jsonObject,
+                                dataType: "json",
+                                contentType: "application/json",
+                                success: function (data) {
+                                    moviePosition = 0;
+                                    recommedResult = data;
+                                    if(recommedResult.length > 0){
+                                        Recommender.helpers.showMovie();
+                                        $('#next-title').attr('disabled', false);
+                                    }else{
+                                        alert('No se encontraron ninguna pelicula con los parametros dado.');
+                                        console.log('No se encontraron ninguna pelicula con los parametros dado.');
+                                    }
+                                },
+                                error: function (data) { 
+                                    _this.removeClass(disabledClass);
+                                    _this.html(buttonText);
+                                },
+                                complete: function(){
+                                    _this.removeClass(disabledClass);
+                                    _this.html(buttonText);
+                                }
+                            });
+                        });
 
-    });
+                        // get next movie
+                        $('#next-title').on('click', function(){
+                            Recommender.helpers.showMovie();
+                            if(recommedResult.length === moviePosition){
+                                $('#next-title').attr('disabled', true);
+                                return;
+                            }
+                        });
+
+                        // toggle watch movie
+                        $('#yala').on('click', function(){
+                            var _this = $(this);
+                            var status = +_this.is(":checked");
+                            var movieId = _this.attr('data-movie-id');
+
+                            movieSeenParams.title = movieId;
+                            movieSeenParams.value = status;
+                            $.ajax({
+                                type: "post",
+                                url: apiRoute+"title/viewed/",
+                                data: JSON.stringify(movieSeenParams),
+                                dataType: "json",
+                                contentType: "application/json",
+                                success: function (data) {
+                                    if(status === 0){
+                                        alert('Pelicula fue removido de lista Visto');
+                                    }else if(status === 1){
+                                        alert('Pelicula fue añadido ah lista Visto');
+                                    }else{
+                                        alert('Occurio un error. Intenta denuevo');
+                                    }
+                                },
+                                error: function (data) { 
+                                    console.log(data) 
+                                },
+                                complete: function(){
+                                    //
+                                }
+                            });
+                        });
+                    };
+                    return {
+                        init: function () {
+                            run();
+                            events();
+                        },
+                        helpers: {
+                            getSelectedIds: function(item){
+                                var ids = [];
+                                var selected = item.find("option:selected");
+            
+                                selected.each(function(){
+                                    ids.push($(this).val());
+                                });
+                                return ids;
+                            },
+                            showMovie: function(){
+                                var reviewGrid = $('.reviews-grids');
+                                var movieToShow = recommedResult[moviePosition];
+
+                                var name = reviewGrid.find('#title-name');
+                                var image = reviewGrid.find('#poster');
+                                var ratingTable = reviewGrid.find('#rating-source');
+
+                                name.html(movieToShow.name);
+                                image.attr('src', movieToShow.posterPath);
+
+                                var ratingTemplate;
+                                $.each(movieToShow.ratings, function(index, value){
+                                    ratingTemplate += '<tr><td>'+value.source+'</td><td>'+value.value+'</td></tr>'
+                                });
+                                ratingTable.html(ratingTemplate);
+
+                                // update has seen movie id
+                                $('#yala').attr('data-movie-id', movieToShow.id);
+
+                                // update detail button url
+                                $('#movie-detail-link').attr('href','/titulo/'+movieToShow.id+'/');
+
+                                // remove checkbock add to list, if selected
+                                $('#yala').prop('checked', false);
+
+                                moviePosition++;
+                            }
+                        },
+                        genders: function () {
+                            var genres = $('#genres');
     
-</script>
+                            $.ajax({
+                                type: "get",
+                                url: apiRoute+"genre/",
+                                data: {},
+                                success: function (data) {
+                                    $.each(data, function (index, item) {
+                                        genres.append($('<option>', { 
+                                            value: item.id,
+                                            text : item.name 
+                                        }));
+                                    });
+                                    genres.selectpicker('refresh');
+                                },
+                                error: function (data) { console.log(data) }
+                            });
 
+                            genres.on('change', function(){
+                                var _this = $(this);
+                                var ids = Recommender.helpers.getSelectedIds(_this);
+                                recommendParams.genre = ids;
+                            });
+                        }, 
+                        actors: function () {
+                            var actors = $('#actors');
+            
+                            $.ajax({
+                                type: "get",
+                                url: apiRoute+"actor/",
+                                data: {},
+                                success: function (data) {
+                                    $.each(data, function (index, item) {
+                                        actors.append($('<option>', { 
+                                            value: item.id,
+                                            text : item.names 
+                                        }));
+                                    });
+                                    actors.selectpicker('refresh');
+                                },
+                                error: function (data) { console.log(data) }
+                            });
+
+                            actors.on('change', function(){
+                                var _this = $(this);
+                                var ids = Recommender.helpers.getSelectedIds(_this);
+                                recommendParams.actors = ids;
+                            });
+                        },
+                        directors: function () {
+                            var directors = $('#directors');
+            
+                            $.ajax({
+                                type: "get",
+                                url: apiRoute+"director/",
+                                data: {},
+                                success: function (data) {
+                                    $.each(data, function (index, item) {
+                                        directors.append($('<option>', { 
+                                            value: item.id,
+                                            text : item.names 
+                                        }));
+                                    });
+                                    directors.selectpicker('refresh');
+                                },
+                                error: function (data) { console.log(data) }
+                            });
+
+                            directors.on('change', function(){
+                                var _this = $(this);
+                                var ids = Recommender.helpers.getSelectedIds(_this);
+                                recommendParams.directors = ids;
+                            });
+                        },
+                        studios: function () {
+                            var studios = $('#studios');
+            
+                            $.ajax({
+                                type: "get",
+                                url: apiRoute+"studio/",
+                                data: {},
+                                success: function (data) {
+                                    $.each(data, function (index, item) {
+                                        studios.append($('<option>', { 
+                                            value: item.id,
+                                            text : item.name 
+                                        }));
+                                    });
+                                    studios.selectpicker('refresh');
+                                },
+                                error: function (data) { console.log(data) }
+                            });
+
+                            studios.on('change', function(){
+                                var _this = $(this);
+                                var ids = Recommender.helpers.getSelectedIds(_this);
+                                recommendParams.studios = ids;
+                            });
+                        },
+                    }
+                })();
+                Recommender.init();
+        });
+    </script>
 }
