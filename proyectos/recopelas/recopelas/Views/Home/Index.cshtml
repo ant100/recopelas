@@ -24,11 +24,6 @@
                     <div class="panel-heading" data-toggle="collapse" data-target="#year-panel" data-size="10">Año</div>
                     <div id="year-panel" class="panel-body collapse">
                         <select id="years" class="selectpicker" data-live-search="true" data-width="100%" multiple="multiple" data-size="10" data-none-selected-text="Seleccionar"> 
-                            <option>2001</option>
-                            <option>2002</option>
-                            <option>2003</option>
-                            <option>2004</option>
-                            <option>2005</option>
                         </select>
                     </div>
                 </div>
@@ -40,7 +35,7 @@
                     </div>
                 </div>
                 <div class="panel panel-primary panel-recofilter">
-                    <div class="panel-heading" data-toggle="collapse" data-target="#studio-panel">Studio</div>
+                    <div class="panel-heading" data-toggle="collapse" data-target="#studio-panel">Productora</div>
                     <div id="studio-panel" class="panel-body collapse">
                         <select id="studios" class="selectpicker" data-live-search="true" data-width="100%" multiple="multiple" data-size="10"> 
                         </select>
@@ -58,7 +53,7 @@
                 </div>
                 <div class="panel-body">
                     <div class="col-md-6">
-                        <img id="poster" width="100%" />
+                        <img id="poster" width="100%" src="~/Content/images/logo.png" alt="No hay portada"/>
                     </div>
                     <div class="col-md-6">
                         <h4>Calificación</h4>
@@ -90,7 +85,8 @@
         $(function () {
                 // TODO: years
                 var Recommender = {};
-                var apiRoute = 'http://192.168.0.16:3002/recopelas-ws/api/';
+                var apiRoute = 'http://192.168.0.16:3000/recopelas-ws/api/';
+                var filters = {};
                 var disabledClass = 'disabled-button';
                 var spinnerLoader = '<span class="glyphicon glyphicon-repeat fast-right-spinner"></span>';
                 // user id
@@ -109,10 +105,7 @@
 
                 Recommender = (function () {
                     var run = function () {
-                        Recommender.genders();
-                        Recommender.actors();
-                        Recommender.directors();
-                        Recommender.studios();
+                        Recommender.filters();
                     };
                     var events = function(){
                         // get recommended movies
@@ -130,7 +123,7 @@
                             var jsonObject = JSON.stringify(recommendParams);
                             $.ajax({
                                 type: "post",
-                                url: apiRoute+"title/recommendation/",
+                                url: apiRoute+"main/recommendation/",
                                 data: jsonObject,
                                 dataType: "json",
                                 contentType: "application/json",
@@ -141,8 +134,8 @@
                                         Recommender.helpers.showMovie();
                                         $('#next-title').attr('disabled', false);
                                     }else{
-                                        alert('No se encontraron ninguna pelicula con los parametros dado.');
-                                        console.log('No se encontraron ninguna pelicula con los parametros dado.');
+                                        alert('No se encontraron peliculas con los parametros ingresados.');
+                                        console.log('No se encontraron peliculas con los parametros ingresados.');
                                     }
                                 },
                                 error: function (data) { 
@@ -175,7 +168,7 @@
                             movieSeenParams.value = status;
                             $.ajax({
                                 type: "post",
-                                url: apiRoute+"title/viewed/",
+                                url: apiRoute+"save-preferences/viewed/",
                                 data: JSON.stringify(movieSeenParams),
                                 dataType: "json",
                                 contentType: "application/json",
@@ -241,21 +234,21 @@
                                 moviePosition++;
                             }
                         },
-                        genders: function () {
+                        filters: function () {
                             var genres = $('#genres');
     
                             $.ajax({
                                 type: "get",
-                                url: apiRoute+"genre/",
+                                url: apiRoute+"main/filters/",
                                 data: {},
                                 success: function (data) {
-                                    $.each(data, function (index, item) {
-                                        genres.append($('<option>', { 
-                                            value: item.id,
-                                            text : item.name 
-                                        }));
-                                    });
-                                    genres.selectpicker('refresh');
+                                    filters = data;
+
+                                    Recommender.genres();
+                                    Recommender.years();
+                                    Recommender.actors();
+                                    Recommender.directors();
+                                    Recommender.studios();
                                 },
                                 error: function (data) { console.log(data) }
                             });
@@ -266,24 +259,53 @@
                                 recommendParams.genre = ids;
                             });
                         }, 
+                        genres: function () {
+                            var genres = $('#genres');
+     
+                            $.each(filters.genres, function (index, item) {
+                                genres.append($('<option>', { 
+                                    value: item.id,
+                                    text : item.name 
+                                }));
+                            });
+                            genres.selectpicker('refresh');
+
+                            genres.on('change', function(){
+                                var _this = $(this);
+                                var ids = Recommender.helpers.getSelectedIds(_this);
+                                recommendParams.genre = ids;
+                            });
+                        }, 
+                       years: function () {
+                            var years = $('#years');
+     
+                            var now = new Date();
+                            var year = now.getFullYear();
+
+                            for (i = year; i >= 1920; i--) { 
+                                years.append($('<option>', { 
+                                    value: i,
+                                    text : i
+                                }));
+                            } 
+                            years.selectpicker('refresh');
+
+                            years.on('change', function(){
+                                var _this = $(this);
+                                var ids = Recommender.helpers.getSelectedIds(_this);
+                                recommendParams.genre = ids;
+                            });
+                        }, 
                         actors: function () {
                             var actors = $('#actors');
             
-                            $.ajax({
-                                type: "get",
-                                url: apiRoute+"actor/",
-                                data: {},
-                                success: function (data) {
-                                    $.each(data, function (index, item) {
-                                        actors.append($('<option>', { 
-                                            value: item.id,
-                                            text : item.names 
-                                        }));
-                                    });
-                                    actors.selectpicker('refresh');
-                                },
-                                error: function (data) { console.log(data) }
+                            $.each(filters.actors, function (index, item) {
+                                actors.append($('<option>', { 
+                                    value: item.id,
+                                    text : item.names 
+                                }));
                             });
+                            actors.selectpicker('refresh');
 
                             actors.on('change', function(){
                                 var _this = $(this);
@@ -294,21 +316,13 @@
                         directors: function () {
                             var directors = $('#directors');
             
-                            $.ajax({
-                                type: "get",
-                                url: apiRoute+"director/",
-                                data: {},
-                                success: function (data) {
-                                    $.each(data, function (index, item) {
-                                        directors.append($('<option>', { 
-                                            value: item.id,
-                                            text : item.names 
-                                        }));
-                                    });
-                                    directors.selectpicker('refresh');
-                                },
-                                error: function (data) { console.log(data) }
+                            $.each(filters.directors, function (index, item) {
+                                directors.append($('<option>', { 
+                                    value: item.id,
+                                    text : item.names 
+                                }));
                             });
+                            directors.selectpicker('refresh');
 
                             directors.on('change', function(){
                                 var _this = $(this);
@@ -318,22 +332,14 @@
                         },
                         studios: function () {
                             var studios = $('#studios');
-            
-                            $.ajax({
-                                type: "get",
-                                url: apiRoute+"studio/",
-                                data: {},
-                                success: function (data) {
-                                    $.each(data, function (index, item) {
-                                        studios.append($('<option>', { 
-                                            value: item.id,
-                                            text : item.name 
-                                        }));
-                                    });
-                                    studios.selectpicker('refresh');
-                                },
-                                error: function (data) { console.log(data) }
+                        
+                            $.each(filters.studios, function (index, item) {
+                                studios.append($('<option>', { 
+                                    value: item.id,
+                                    text : item.name 
+                                }));
                             });
+                            studios.selectpicker('refresh');
 
                             studios.on('change', function(){
                                 var _this = $(this);
