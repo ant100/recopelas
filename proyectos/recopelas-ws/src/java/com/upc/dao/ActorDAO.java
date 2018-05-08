@@ -8,14 +8,15 @@ import com.upc.entity.Actor;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import javax.ejb.Singleton; 
+import javax.enterprise.inject.Model;
+import javax.inject.Inject;
 /**
  *
  * @author leo
  */
-@Singleton
+
 public class ActorDAO {
-      
+    
     public List<Actor> getAll(){
         
         List<Actor> list = new ArrayList<Actor>();

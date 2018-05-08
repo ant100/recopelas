@@ -5,13 +5,10 @@
  */
 package com.upc.service;
 
-import com.upc.dao.StudioDAO;
-import com.upc.entity.Studio;
-import java.util.List;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
-import javax.ws.rs.Produces;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.Produces;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PUT;
@@ -22,23 +19,23 @@ import javax.ws.rs.core.MediaType;
  *
  * @author leo
  */
-@Path("studio")
-public class StudioREST {
+@Path("security")
+public class SecurityREST {
 
     @Context
     private UriInfo context;
 
     /**
-     * Creates a new instance of StudioREST
+     * Creates a new instance of SecurityREST
      */
-    public StudioREST() {
+    public SecurityREST() {
     }
-
+ 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Studio> findAll() {
-        StudioDAO studioDAO = new StudioDAO();
-        return studioDAO.getAll();
+    public String getJson() {
+        //TODO return proper representation object
+        return "Logueado";
     }
  
 }

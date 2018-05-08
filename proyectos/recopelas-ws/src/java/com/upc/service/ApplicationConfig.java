@@ -29,13 +29,11 @@ public class ApplicationConfig extends Application {
      * If required, comment out calling this method in getClasses().
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
-        resources.add(com.upc.service.ActorREST.class);
-        resources.add(com.upc.service.DirectorREST.class);
-        resources.add(com.upc.service.GenreREST.class);
+        resources.add(com.upc.service.DetailREST.class);
         resources.add(com.upc.service.MainREST.class);
+        resources.add(com.upc.service.PreferencesREST.class);
         resources.add(com.upc.service.QueueREST.class);
-        resources.add(com.upc.service.StudioREST.class);
-        resources.add(com.upc.service.TitleREST.class);
+        resources.add(com.upc.service.SecurityREST.class);
     }
     
 }

@@ -5,13 +5,21 @@
  */
 package com.upc.service;
 
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.UriInfo;
-import javax.ws.rs.Consumes;
+import com.upc.dao.ActorDAO;
+import com.upc.dao.DirectorDAO;
+import com.upc.dao.GenreDAO;
+import com.upc.dao.StudioDAO;
+import com.upc.dao.TitleDAO;
+import com.upc.entity.Title;
+import com.upc.model.Filter;
+import com.upc.model.Interest;
+import java.util.List;
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.ws.rs.Produces;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.PUT;
 import javax.ws.rs.core.MediaType;
 
 /**
@@ -22,32 +30,40 @@ import javax.ws.rs.core.MediaType;
 @Path("main")
 public class MainREST {
 
-    @Context
-    private UriInfo context;
+    private ActorDAO actorDAO;
+    private GenreDAO genreDAO;
+    private DirectorDAO directorDAO;
+    private StudioDAO studioDAO;
+    private TitleDAO titleDAO;
 
     /**
      * Creates a new instance of MainREST
      */
     public MainREST() {
+        actorDAO = new ActorDAO();
+        genreDAO = new GenreDAO();
+        directorDAO = new DirectorDAO();
+        studioDAO = new StudioDAO();
+        titleDAO = new TitleDAO();
     }
-
-    /**
-     * Retrieves representation of an instance of com.upc.service.MainREST
-     * @return an instance of java.lang.String
-     */
+     
     @GET
-    @Produces(MediaType.APPLICATION_XML)
-    public String getXml() {
-        //TODO return proper representation object
-        throw new UnsupportedOperationException();
+    @Path("filters")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Filter filters() {
+        Filter filters = new Filter();
+        filters.setActors(actorDAO.getAll());
+        filters.setGenres(genreDAO.getAll());
+        filters.setDirectors(directorDAO.getAll());
+        filters.setStudios(studioDAO.getAll());
+        return filters;
     }
-
-    /**
-     * PUT method for updating or creating an instance of MainREST
-     * @param content representation for the resource
-     */
-    @PUT
-    @Consumes(MediaType.APPLICATION_XML)
-    public void putXml(String content) {
-    }
+ 
+    @POST
+    @Path("recommendation")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Title> recommendation(Interest interest) {
+        return titleDAO.gerRecommended(interest);
+    }    
+    
 }

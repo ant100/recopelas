@@ -5,18 +5,21 @@
  */
 package com.upc.service;
 
-import com.upc.dao.GenreDAO;
-import com.upc.entity.Genre;
+import com.upc.dao.TitleDAO;
+import com.upc.entity.Title;
+import com.upc.entity.Yala;
+import com.upc.model.Interest;
+import com.upc.model.Response;
 import java.util.List;
-import javax.enterprise.context.RequestScoped;
-import javax.inject.Inject;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
-import javax.ws.rs.Consumes;
 import javax.ws.rs.Produces;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import static javax.ws.rs.HttpMethod.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.PUT;
+import javax.ws.rs.POST;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.core.MediaType;
 
 /**
@@ -24,22 +27,24 @@ import javax.ws.rs.core.MediaType;
  *
  * @author leo
  */
-@Path("genre") 
-public class GenreREST {
+@Path("detail")
+public class DetailREST {
 
     @Context
     private UriInfo context;
-      
+
     /**
-     * Creates a new instance of GenreREST
+     * Creates a new instance of TitleREST
      */
-    public GenreREST() {
+    public DetailREST() {
     }
 
     @GET
+    @Path("{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Genre> findAll() { 
-        GenreDAO genreDAO = new GenreDAO();
-        return genreDAO.getAll();
+    public Title find(@PathParam("id") String id) {
+        TitleDAO titleDAO = new TitleDAO();
+        return titleDAO.get(id);
     }
+
 }

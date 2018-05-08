@@ -6,20 +6,16 @@
 package com.upc.service;
 
 import com.upc.dao.TitleDAO;
-import com.upc.entity.Title;
 import com.upc.entity.Yala;
-import com.upc.model.Interest;
 import com.upc.model.Response;
-import java.util.List;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
-import javax.ws.rs.Produces;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.Produces;
 import javax.ws.rs.GET;
-import static javax.ws.rs.HttpMethod.POST;
-import javax.ws.rs.Path;
 import javax.ws.rs.POST;
-import javax.ws.rs.PathParam;
+import javax.ws.rs.Path;
+import javax.ws.rs.PUT;
 import javax.ws.rs.core.MediaType;
 
 /**
@@ -27,41 +23,18 @@ import javax.ws.rs.core.MediaType;
  *
  * @author leo
  */
-@Path("title")
-public class TitleREST {
+@Path("save-preferences")
+public class PreferencesREST {
 
     @Context
     private UriInfo context;
 
     /**
-     * Creates a new instance of TitleREST
+     * Creates a new instance of UserPreferencesREST
      */
-    public TitleREST() {
-    }
- 
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    public List<Title> findAll() {
-        TitleDAO titleDAO = new TitleDAO();
-        return titleDAO.getAll();
+    public PreferencesREST() {
     }
 
-    @GET
-    @Path("{id}")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Title find(@PathParam("id") String id) {
-        TitleDAO titleDAO = new TitleDAO();
-        return titleDAO.get(id);
-    }
-    
-    @POST
-    @Path("recommendation")
-    @Produces(MediaType.APPLICATION_JSON)
-    public List<Title> recommendation(Interest interest) {
-        TitleDAO titleDAO = new TitleDAO(); 
-        return titleDAO.gerRecommended(interest);
-    }
-    
     @POST
     @Path("viewed")
     @Produces(MediaType.APPLICATION_JSON)
