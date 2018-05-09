@@ -5,21 +5,16 @@
         <group>
             <file>file:/Users/victorleonardocorderoespinoza/Sites/recopelas/proyectos/recopelas-ws/src/java/com/upc/dao/TitleDAO.java</file>
             <file>file:/Users/victorleonardocorderoespinoza/Sites/recopelas/proyectos/recopelas-ws/src/java/com/upc/dao/StudioDAO.java</file>
-            <file>file:/Users/victorleonardocorderoespinoza/Sites/recopelas/proyectos/recopelas-ws/src/java/com/upc/service/GenreREST.java</file>
-            <file>file:/Users/victorleonardocorderoespinoza/Sites/recopelas/proyectos/recopelas-ws/src/java/com/upc/service/StudioREST.java</file>
-            <file>file:/Users/victorleonardocorderoespinoza/Sites/recopelas/proyectos/recopelas-ws/src/java/com/upc/dao/DirectorDAO.java</file>
-            <file>file:/Users/victorleonardocorderoespinoza/Sites/recopelas/proyectos/recopelas-ws/src/java/com/upc/entity/Language.java</file>
-            <file>file:/Users/victorleonardocorderoespinoza/Sites/recopelas/proyectos/recopelas-ws/src/java/com/upc/dao/GenreDAO.java</file>
-            <file>file:/Users/victorleonardocorderoespinoza/Sites/recopelas/proyectos/recopelas-ws/src/java/com/upc/entity/Title.java</file>
-            <file>file:/Users/victorleonardocorderoespinoza/Sites/recopelas/proyectos/recopelas-ws/src/java/com/upc/dao/Database.java</file>
-            <file>file:/Users/victorleonardocorderoespinoza/Sites/recopelas/proyectos/recopelas-ws/src/java/com/upc/service/TitleREST.java</file>
+            <file>file:/Users/victorleonardocorderoespinoza/Sites/recopelas/proyectos/recopelas-ws/web/index.html</file>
+            <file>file:/Users/victorleonardocorderoespinoza/Sites/recopelas/proyectos/recopelas-ws/src/java/com/upc/service/PreferencesREST.java</file>
             <file>file:/Users/victorleonardocorderoespinoza/Sites/recopelas/proyectos/recopelas-ws/src/java/com/upc/entity/UserSystem.java</file>
+            <file>file:/Users/victorleonardocorderoespinoza/Sites/recopelas/proyectos/recopelas-ws/src/java/com/upc/model/User.java</file>
             <file>file:/Users/victorleonardocorderoespinoza/Sites/recopelas/proyectos/recopelas-ws/src/java/com/upc/model/Interest.java</file>
-            <file>file:/Users/victorleonardocorderoespinoza/Sites/recopelas/proyectos/recopelas-ws/src/java/com/upc/entity/Yala.java</file>
-            <file>file:/Users/victorleonardocorderoespinoza/Sites/recopelas/proyectos/recopelas-ws/src/java/com/upc/dao/ActorDAO.java</file>
-            <file>file:/Users/victorleonardocorderoespinoza/Sites/recopelas/proyectos/recopelas-ws/src/java/com/upc/dao/RatingDAO.java</file>
-            <file>file:/Users/victorleonardocorderoespinoza/Sites/recopelas/proyectos/recopelas-ws/src/java/com/upc/dao/LanguageDAO.java</file>
-            <file>file:/Users/victorleonardocorderoespinoza/Sites/recopelas/proyectos/recopelas-ws/src/java/com/upc/entity/Studio.java</file>
+            <file>file:/Users/victorleonardocorderoespinoza/Sites/recopelas/proyectos/recopelas-ws/src/java/com/upc/service/ApplicationConfig.java</file>
+            <file>file:/Users/victorleonardocorderoespinoza/Sites/recopelas/proyectos/recopelas-ws/src/java/com/upc/service/DetailREST.java</file>
+            <file>file:/Users/victorleonardocorderoespinoza/Sites/recopelas/proyectos/recopelas-ws/src/java/com/upc/service/MainREST.java</file>
+            <file>file:/Users/victorleonardocorderoespinoza/Sites/recopelas/proyectos/recopelas-ws/src/java/com/upc/service/SecurityREST.java</file>
+            <file>file:/Users/victorleonardocorderoespinoza/Sites/recopelas/proyectos/recopelas-ws/src/java/com/upc/dao/UserDAO.java</file>
         </group>
     </open-files>
 </project-private>

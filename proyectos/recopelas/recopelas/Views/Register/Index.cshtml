@@ -1,0 +1,87 @@
+﻿@model recopelas.Models.RegisterModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <section class="container">
+        <div class="container-page">
+            
+            <form method="POST" action="/register">
+
+            <div class="col-md-6">
+                <h3 class="dark-grey">Registro</h3>
+
+                <div class="form-group col-lg-12">
+                    <label>Nombres</label>
+                    <input type="text" name="name" class="form-control" id="" value=""> 
+                     @Html.ValidationMessageFor(x => x.name)
+                </div>
+
+                <div class="form-group col-lg-6">
+                    <label>Apellido Paterno</label>
+                    <input type="text" name="lastnameFather" class="form-control" id="" value="">
+                </div>
+
+                <div class="form-group col-lg-6">
+                    <label>Apellido Materno</label>
+                    <input type="text" name="lastnameMother" class="form-control" id="" value="">
+                </div>
+
+                <div class="form-group col-lg-12">
+                    <label>Correo</label>
+                    <input type="email" name="email" class="form-control" id="" value="">
+                </div>
+
+                <div class="form-group col-lg-6">
+                    <label>Password</label>
+                    <input type="password" name="password" class="form-control" id="" value="">
+                </div>
+
+                <div class="form-group col-lg-6">
+                    <label>Repeat Password</label>
+                    <input type="password" name="confirmPassword" class="form-control" id="" value="">
+                </div>
+
+                <div class="form-group col-lg-6">
+                    <label>DNI</label>
+                    <input type="text" name="document" class="form-control" id="" value="">
+                </div>
+
+                <div class="form-group col-lg-6">
+                    <label>Telefono</label>
+                    <input type="text" name="phone" class="form-control" id="" value="">
+                </div>
+
+                <div class="form-group col-lg-12">
+                    <label>Dirección</label>
+                    <input type="text" name="address" class="form-control" id="" value="">
+                </div>
+
+            </div>
+
+            <div class="col-md-6">
+                <h3 class="dark-grey">Terminos y condiciones</h3>
+                <p>
+                    By clicking on "Register" you agree to The Company's' Terms and Conditions
+                </p>
+                <p>
+                    While rare, prices are subject to change based on exchange rate fluctuations -
+                    should such a fluctuation happen, we may request an additional payment. You have the option to request a full refund or to pay the new price. (Paragraph 13.5.8)
+                </p>
+                <p>
+                    Should there be an error in the description or pricing of a product, we will provide you with a full refund (Paragraph 13.5.6)
+                </p>
+                <p>
+                    Acceptance of an order by us is dependent on our suppliers ability to provide the product. (Paragraph 13.5.6)
+                </p>
+
+                <button type="submit" class="btn btn-primary">Registrar</button>
+                @ViewData["Data"]
+            </div>
+
+            </form>
+
+        </div>
+    </section>
+</div>
