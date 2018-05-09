@@ -10,6 +10,7 @@ namespace recopelas.Controllers
     {
         public ActionResult Index(int Id)
         {
+			ViewData["IdTitle"] = Id.ToString();
             return View ();
         }
     }

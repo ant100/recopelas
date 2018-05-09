@@ -1,0 +1,25 @@
+﻿@{ 
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="main-contact">
+    <h3 class="head">Inicio de Sesión</h3>
+    <p>¡Bienvenido a Recopelas!</p>
+    <div class="contact-form">
+        <form action="/login" method="post">
+            <div class="col-md-3 text-center">
+                <input type="email" name="email" placeholder="Correo" class="form-control" required />
+            </div>
+            <div class="col-md-3">
+                <input type="password" name="password" placeholder="Contrasena" class=form-control required />
+            </div>
+            <div>
+                <input type="submit" value="Ingresar" class="btn btn-primary" />
+            </div>
+            <div class="clearfix"></div>
+        </form>
+    </div>
+    @ViewData["Data"]
+</div>
+

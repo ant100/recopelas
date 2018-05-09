@@ -52,3 +52,4 @@
 /Users/victorleonardocorderoespinoza/Sites/recopelas/proyectos/recopelas/recopelas/obj/Debug/recopelas.csproj.CoreCompileInputs.cache
 /Users/victorleonardocorderoespinoza/Sites/recopelas/proyectos/recopelas/recopelas/obj/Debug/recopelas.dll
 /Users/victorleonardocorderoespinoza/Sites/recopelas/proyectos/recopelas/recopelas/obj/Debug/recopelas.pdb
+/Users/victorleonardocorderoespinoza/Sites/recopelas/proyectos/recopelas/recopelas/bin/RestSharp.dll

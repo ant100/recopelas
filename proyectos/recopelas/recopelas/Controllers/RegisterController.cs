@@ -11,21 +11,22 @@ using System.IO;
 
 namespace recopelas.Controllers
 {
-    public class LoginController : Controller
+    public class RegisterController : Controller
     {
         public ActionResult Index()
         {
-			ViewData["Data"] = "";
-            return View ();
+            return View (new RegisterModel());
         }
-      
+
         [HttpPost]
-		public ActionResult Index(LoginModel login)
+		public ActionResult Index(RegisterModel register)
         {
+            if (!ModelState.IsValid){
+                return View(register);
+            }
 			var client = new RestClient("http://localhost:8080/recopelas-ws/api/security/");          
-			var request = new RestRequest("login", Method.POST); 
-			string jsonToSend = JsonConvert.SerializeObject(login);          
-            
+			var request = new RestRequest("register", Method.POST); 
+			string jsonToSend = JsonConvert.SerializeObject(register);
 			request.AddParameter("application/json; charset=utf-8", jsonToSend, ParameterType.RequestBody);
             request.RequestFormat = DataFormat.Json;          
 
