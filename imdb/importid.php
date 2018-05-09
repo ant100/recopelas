@@ -16,7 +16,7 @@ $dir = new DirectoryIterator('peliculator/csv');
 foreach ($dir as $fileinfo) {
     if (!$fileinfo->isDot()){
         $file = $fileinfo->getPathname();
-		if (($handle = fopen("http://".$_SERVER['HTTP_HOST']."/".$file, "r")) !== FALSE){
+        if (($handle = fopen("http://".$_SERVER['HTTP_HOST']."/imdb/".$file, "r")) !== FALSE){
     		// leer el contenido del archivo csv
     		while (($data = fgetcsv($handle, 0, ",")) !== FALSE){
     			foreach($data as $d){
@@ -33,7 +33,10 @@ foreach ($dir as $fileinfo) {
 						    mysqli_query($link,"INSERT INTO imdb(imdb_imdbID)
 										VALUES ('".$match[1]."')") 
 									or die(mysqli_error($link));
-						}	
+                            echo 'id guardado';
+						}	else {
+                            echo 'id ya existe <br>';
+                        }
 					}
     			}
         	}

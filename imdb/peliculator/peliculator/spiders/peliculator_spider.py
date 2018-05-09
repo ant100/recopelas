@@ -9,24 +9,28 @@ class PeliculatorSpider(scrapy.Spider):
 	name = "peliculator"
 	allowed_domains = ["imdb.com"]
 	start_urls = [
-		'http://www.imdb.com/search/title?genres=animation&view=simple',
-		'http://www.imdb.com/search/title?genres=biography&view=simple',
-		'http://www.imdb.com/search/title?genres=comedy&view=simple',
-		'http://www.imdb.com/search/title?genres=crime&view=simple',
-		'http://www.imdb.com/search/title?genres=drama&view=simple',
-		'http://www.imdb.com/search/title?genres=family&view=simple',
-		'http://www.imdb.com/search/title?genres=fantasy&view=simple',
-		'http://www.imdb.com/search/title?genres=film_noir&view=simple',
-		'http://www.imdb.com/search/title?genres=horror&view=simple',
-		'http://www.imdb.com/search/title?genres=music&view=simple',
-		'http://www.imdb.com/search/title?genres=mystery&view=simple',
-		'http://www.imdb.com/search/title?genres=romance&view=simple',
-		'http://www.imdb.com/search/title?genres=sci_fi&view=simple',
-		'http://www.imdb.com/search/title?genres=sport&view=simple',
-		'http://www.imdb.com/search/title?genres=thriller&view=simple',
-		'http://www.imdb.com/search/title?genres=war&view=simple',
-		'http://www.imdb.com/search/title?genres=western&view=simple',
+		'https://www.imdb.com/search/title?genres=film_noir&view=simple&sort=release_date,desc'
 	]
+
+	#start_urls = [
+	#	'http://www.imdb.com/search/title?genres=animation&view=simple',
+	#	'http://www.imdb.com/search/title?genres=biography&view=simple',
+	#	'http://www.imdb.com/search/title?genres=comedy&view=simple',
+	#	'http://www.imdb.com/search/title?genres=crime&view=simple',
+	#	'http://www.imdb.com/search/title?genres=drama&view=simple',
+	#	'http://www.imdb.com/search/title?genres=family&view=simple',
+	#	'http://www.imdb.com/search/title?genres=fantasy&view=simple',
+	#	'http://www.imdb.com/search/title?genres=film_noir&view=simple',
+	#	'http://www.imdb.com/search/title?genres=horror&view=simple',
+	#	'http://www.imdb.com/search/title?genres=music&view=simple',
+	#	'http://www.imdb.com/search/title?genres=mystery&view=simple',
+	#	'http://www.imdb.com/search/title?genres=romance&view=simple',
+	#	'http://www.imdb.com/search/title?genres=sci_fi&view=simple',
+	#	'http://www.imdb.com/search/title?genres=sport&view=simple',
+	#	'http://www.imdb.com/search/title?genres=thriller&view=simple',
+	#	'http://www.imdb.com/search/title?genres=war&view=simple',
+	#	'http://www.imdb.com/search/title?genres=western&view=simple',
+	#]
 
 	def parse(self, response):
 		start = 'genres='
@@ -40,7 +44,7 @@ class PeliculatorSpider(scrapy.Spider):
 			if url is not None:
 				ids.append(url)
 
-		filename = '%s.csv' % page
+		filename = 'csv/%s.csv' % page
 		with open(filename, 'ab+') as f:
 			wr = csv.writer(f,quoting=csv.QUOTE_ALL,lineterminator=",")
 			wr.writerow(ids)

@@ -13,7 +13,8 @@ if ($mysqli->connect_errno) {
 }
 
 //$query = "SELECT imdb_imdbID FROM imdb order by imdb_id ASC limit 100";
-$query = "SELECT imdb_imdbID FROM imdb WHERE imdb_fech_registro >= curdate() - INTERVAL DAYOFWEEK(curdate())+6 DAY AND imdb_fech_registro < curdate() - INTERVAL DAYOFWEEK(curdate())-1 DAY"
+//$query = "SELECT imdb_imdbID FROM imdb WHERE imdb_fech_registro >= curdate() - INTERVAL DAYOFWEEK(curdate())+6 DAY AND imdb_fech_registro < curdate() - INTERVAL DAYOFWEEK(curdate())-1 DAY";
+$query = "SELECT imdb_imdbID FROM imdb WHERE imdb_imdbID = 'tt1298551'";
 $result = $mysqli->query($query);
 $imdbids = array();
 
@@ -307,16 +308,21 @@ foreach($imdbids as $imdbid)
 				// tabla titulos_ratings_source
 
 					// imdb
-					$sql8 = "INSERT INTO titulos_ratings_source (titulo_id, rs_id, valor) VALUES (".$titulo_id.", 1,'".$imdb_rating."')";
-					if($mysqli->query($sql8) != TRUE) {
-						echo "Error: " . $sql8 . "<br>" . $mysqli->error;
-					} 
-
-					// rotten tomatoes
-					$sql9 = "INSERT INTO titulos_ratings_source (titulo_id, rs_id, valor) VALUES (".$titulo_id.", 2,'".$rotten_rating."')";
-					if($mysqli->query($sql9) != TRUE) {
-						echo "Error: " . $sql9 . "<br>" . $mysqli->error;
+					if(!empty($imdb_rating)){
+						$sql8 = "INSERT INTO titulos_ratings_source (titulo_id, rs_id, valor) VALUES (".$titulo_id.", 1,'".$imdb_rating."')";
+						if($mysqli->query($sql8) != TRUE) {
+							echo "Error: " . $sql8 . "<br>" . $mysqli->error;
+						} 
 					}
+					
+					// rotten tomatoes
+					if(!empty($rotten_rating)){
+						$sql9 = "INSERT INTO titulos_ratings_source (titulo_id, rs_id, valor) VALUES (".$titulo_id.", 2,'".$rotten_rating."')";
+						if($mysqli->query($sql9) != TRUE) {
+							echo "Error: " . $sql9 . "<br>" . $mysqli->error;
+						}
+					}
+					
 			}
 
 			curl_close($curl);	
