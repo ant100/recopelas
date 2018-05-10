@@ -6,15 +6,16 @@
             <file>file:/Users/victorleonardocorderoespinoza/Sites/recopelas/proyectos/recopelas-ws/src/java/com/upc/dao/TitleDAO.java</file>
             <file>file:/Users/victorleonardocorderoespinoza/Sites/recopelas/proyectos/recopelas-ws/src/java/com/upc/dao/StudioDAO.java</file>
             <file>file:/Users/victorleonardocorderoespinoza/Sites/recopelas/proyectos/recopelas-ws/web/index.html</file>
-            <file>file:/Users/victorleonardocorderoespinoza/Sites/recopelas/proyectos/recopelas-ws/src/java/com/upc/service/PreferencesREST.java</file>
-            <file>file:/Users/victorleonardocorderoespinoza/Sites/recopelas/proyectos/recopelas-ws/src/java/com/upc/entity/UserSystem.java</file>
-            <file>file:/Users/victorleonardocorderoespinoza/Sites/recopelas/proyectos/recopelas-ws/src/java/com/upc/model/User.java</file>
-            <file>file:/Users/victorleonardocorderoespinoza/Sites/recopelas/proyectos/recopelas-ws/src/java/com/upc/model/Interest.java</file>
             <file>file:/Users/victorleonardocorderoespinoza/Sites/recopelas/proyectos/recopelas-ws/src/java/com/upc/service/ApplicationConfig.java</file>
             <file>file:/Users/victorleonardocorderoespinoza/Sites/recopelas/proyectos/recopelas-ws/src/java/com/upc/service/DetailREST.java</file>
+            <file>file:/Users/victorleonardocorderoespinoza/Sites/recopelas/proyectos/recopelas-ws/src/java/com/upc/service/PreferencesREST.java</file>
+            <file>file:/Users/victorleonardocorderoespinoza/Sites/recopelas/proyectos/recopelas-ws/src/java/com/upc/model/User.java</file>
+            <file>file:/Users/victorleonardocorderoespinoza/Sites/recopelas/proyectos/recopelas-ws/src/java/com/upc/model/Interest.java</file>
+            <file>file:/Users/victorleonardocorderoespinoza/Sites/recopelas/proyectos/recopelas-ws/src/java/com/upc/utilities/SystemUserQueue.java</file>
             <file>file:/Users/victorleonardocorderoespinoza/Sites/recopelas/proyectos/recopelas-ws/src/java/com/upc/service/MainREST.java</file>
             <file>file:/Users/victorleonardocorderoespinoza/Sites/recopelas/proyectos/recopelas-ws/src/java/com/upc/service/SecurityREST.java</file>
             <file>file:/Users/victorleonardocorderoespinoza/Sites/recopelas/proyectos/recopelas-ws/src/java/com/upc/dao/UserDAO.java</file>
+            <file>file:/Users/victorleonardocorderoespinoza/Sites/recopelas/proyectos/recopelas-ws/src/java/com/upc/service/QueueREST.java</file>
         </group>
     </open-files>
 </project-private>

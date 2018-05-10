@@ -1,12 +1,12 @@
 ﻿<Properties StartupConfiguration="{BD0DA096-C731-45D5-9F16-0B8128C3D83D}|">
   <MonoDevelop.Ide.ItemProperties.recopelas PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="recopelas/Controllers/RegisterController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="recopelas/App_Start/RouteConfig.cs">
     <Files>
       <File FileName="recopelas/Controllers/HomeController.cs" Line="1" Column="1" />
       <File FileName="recopelas/Content/css/style.css" Line="1" Column="1" />
       <File FileName="recopelas/Views/Shared/_Layout.cshtml" Line="1" Column="1" />
       <File FileName="recopelas/Controllers/TitleController.cs" Line="1" Column="1" />
-      <File FileName="recopelas/App_Start/RouteConfig.cs" Line="24" Column="31" />
+      <File FileName="recopelas/App_Start/RouteConfig.cs" Line="19" Column="34" />
       <File FileName="recopelas/Views/Title/Index.cshtml" Line="1" Column="1" />
       <File FileName="recopelas/Models/LoginModel.cs" Line="1" Column="1" />
       <File FileName="recopelas/Controllers/LoginController.cs" Line="1" Column="1" />
