@@ -5,7 +5,7 @@
  */
 package com.upc.utilities;
 
-import com.upc.entity.UserSystem;
+import com.upc.model.User;
 import java.io.IOException;
 import java.util.Random;
 import java.util.UUID;
@@ -31,7 +31,7 @@ public class SystemUserQueue {
     private String url = ActiveMQConnection.DEFAULT_BROKER_URL;
     private String subject = "queue.UserSystem"; //Nombre de la cola
     
-    public void Add(UserSystem newUserSystem)throws JMSException, IOException{
+    public void Add(User newUserSystem)throws JMSException, IOException{
     
         //Conexión
         ConnectionFactory connectionFactory = new ActiveMQConnectionFactory(url);
@@ -61,8 +61,6 @@ public class SystemUserQueue {
         producer.send(message);
         //cerramos la conexión   
         connection.close();         
-        
-        
     }    
     
     

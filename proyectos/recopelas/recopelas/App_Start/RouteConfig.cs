@@ -14,7 +14,16 @@ namespace recopelas
                 url: "titulo/{id}",
                 defaults: new { controller = "Title", action = "Index", id = UrlParameter.Optional }
             );
-
+			routes.MapRoute(
+                name: "Register",
+                url: "registrarse/",
+                defaults: new { controller = "Register", action = "Index"}
+            );
+			routes.MapRoute(
+                name: "Login",
+                url: "ingresar/",
+                defaults: new { controller = "Login", action = "Index" }
+            );
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

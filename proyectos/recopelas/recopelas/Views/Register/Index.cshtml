@@ -63,20 +63,25 @@
             <div class="col-md-6">
                 <h3 class="dark-grey">Terminos y condiciones</h3>
                 <p>
-                    By clicking on "Register" you agree to The Company's' Terms and Conditions
+                    Al hacer clic en "Registrarse", acepta los Términos y condiciones de la empresa.
                 </p>
                 <p>
-                    While rare, prices are subject to change based on exchange rate fluctuations -
-                    should such a fluctuation happen, we may request an additional payment. You have the option to request a full refund or to pay the new price. (Paragraph 13.5.8)
-                </p>
-                <p>
-                    Should there be an error in the description or pricing of a product, we will provide you with a full refund (Paragraph 13.5.6)
-                </p>
-                <p>
-                    Acceptance of an order by us is dependent on our suppliers ability to provide the product. (Paragraph 13.5.6)
-                </p>
+                    Aunque son poco frecuentes, los precios están sujetos a cambios en función de las fluctuaciones del tipo de cambio: en caso de que se produzca dicha fluctuación, podemos solicitar un pago adicional. Usted tiene la opción de solicitar un reembolso completo o pagar el nuevo precio.
+                </p>  
 
-                <button type="submit" class="btn btn-primary">Registrar</button>
+                <hr />
+
+                <div class="form-group col-lg-6">
+                    <label>Tipo</label>
+                    <select class=form-control>
+                        <option value="normal">Normal</option>
+                        <option value="black">Black</option>
+                    </select>
+                </div>
+
+                <div class="form-group col-lg-12">
+                    <button type="submit" class="btn btn-primary">Registrarse</button>
+                </div>
                 @ViewData["Data"]
             </div>
 

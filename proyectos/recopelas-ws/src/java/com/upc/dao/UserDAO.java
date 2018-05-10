@@ -5,8 +5,6 @@
  */
 package com.upc.dao;
 
-import com.upc.entity.UserSystem;
-import com.upc.entity.Yala;
 import com.upc.model.User;
 import java.sql.Connection;
 import java.sql.DriverManager;

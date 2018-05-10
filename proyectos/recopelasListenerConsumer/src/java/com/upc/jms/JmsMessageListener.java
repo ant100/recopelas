@@ -5,7 +5,7 @@
  */
 package com.upc.jms;
 
-import com.upc.entity.UserSystem;
+import com.upc.entity.User;
 import java.net.URISyntaxException;
 import javax.jms.Connection;
 import javax.jms.ConnectionFactory;
@@ -52,17 +52,16 @@ public class JmsMessageListener {
             ObjectMessage mensajeRecibido = (ObjectMessage) mensaje.receive();                
                             
             ObjectMapper mapper = new ObjectMapper();
-            UserSystem newUserSystem = mapper.readValue((String)mensajeRecibido.getObject(), UserSystem.class);                            
+            User newUserSystem = mapper.readValue((String)mensajeRecibido.getObject(), User.class);                            
                             
-            if (newUserSystem instanceof UserSystem) {                          
+            if (newUserSystem instanceof User) {                          
                                 
-                System.out.println("Usuario recibido -> Id: " + newUserSystem.getUsuario_id()
-                                                     + ", Nombre: " + newUserSystem.getUsuario_nombre()
-                                                     + ", Apellidos : " + newUserSystem.getUsuario_apellido_paterno() + " " + newUserSystem.getUsuario_apellido_materno()                                                     
-                                                     + ", DNI: " + newUserSystem.getUsuario_dni()
-                                                     + ", Celular: " + newUserSystem.getUsuario_celular()
-                                                     + ", Fecha Registro: " + newUserSystem.getUsuario_fech_registro()
-                                                     + ", Estado: " + newUserSystem.getUsuario_estado()); 
+                System.out.println("Usuario recibido -> "
+                                    + ", Nombre: " + newUserSystem.getName()
+                                    + ", Apellidos : " + newUserSystem.getLastnameFather()+ " " + newUserSystem.getLastnameMother()
+                                    + ", DNI: " + newUserSystem.getDocument()
+                                    + ", Celular: " + newUserSystem.getPhone()
+                                    + ", Email: " + newUserSystem.getEmail()); 
                 }               
 	}			
 	} finally {

@@ -5,7 +5,7 @@
  */
 package com.upc.service;
 
-import com.upc.entity.UserSystem;
+import com.upc.model.User;
 import com.upc.utilities.SystemUserQueue;
 import java.io.IOException;
 import javax.jms.JMSException;
@@ -42,20 +42,10 @@ public class QueueREST {
      */
     @POST
     @Produces(MediaType.APPLICATION_JSON)
-    public void postAddToQueue(UserSystem userSystem)throws JMSException, IOException {
+    public void postAddToQueue(User userSystem)throws JMSException, IOException {
         
         SystemUserQueue queue = new SystemUserQueue();
         queue.Add(userSystem);
         
-        
-    }
-
-    /**
-     * PUT method for updating or creating an instance of QueueREST
-     * @param content representation for the resource
-     */
-    @PUT
-    @Consumes(MediaType.APPLICATION_JSON)
-    public void putJson(String content) {
     }
 }

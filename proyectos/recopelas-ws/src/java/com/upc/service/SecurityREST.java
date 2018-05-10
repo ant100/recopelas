@@ -8,7 +8,10 @@ package com.upc.service;
 import com.upc.dao.UserDAO;
 import com.upc.model.Response;
 import com.upc.model.User;
+import com.upc.utilities.SystemUserQueue;
+import java.io.IOException;
 import java.sql.SQLException;
+import javax.jms.JMSException;
 import javax.ws.rs.Produces;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -43,13 +46,19 @@ public class SecurityREST {
     @POST
     @Path("register")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response register(User user) {
+    public Response register(User user) throws JMSException, IOException{
         
         Response res = new Response();
         try{
+            
             userDAO.save(user);
+            
+            SystemUserQueue queue = new SystemUserQueue();
+            queue.Add(user);
+            
             res.setCode(1);
             res.setMessage("Guardado");
+            
         }catch(SQLException e){
             res.setCode(0);
             res.setMessage(e.getMessage());
